@@ -1,10 +1,21 @@
 {% extends '_base.html' %}
-
+{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'estates/css/index.css' %}">{% endblock css %}
 
 {% block content %}
-	<div class="container">
+	<div class="super-container">
 		<div class="row">
-			
+			<div class="image-container">
+				<div class="search-container">
+					<h1 class="search-title">Find your home</h1>
+					<form>
+						<input class="search-item" type="text" name="" placeholder="Property type">
+						<input class="search-item" type="text" name="" placeholder="No rooms">
+						<input class="search-item" type="text" name="" placeholder="Location">
+						<button type="button" class="btn-submit"><span>SUBMIT LISTING</span></button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock content %}
