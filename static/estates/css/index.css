@@ -1,0 +1,62 @@
+.super-container {
+	width: 100%;
+}
+
+.image-container {
+	display: flex;
+	padding: 0;
+	width: 100%;
+	height: 70%;
+	align-items: center;
+	justify-content: center;
+}
+
+.image-container .search-container {
+	width: 61rem;
+	margin-top: 3em;
+}
+
+.image-container .search-container .search-title {
+	display: block;
+	color: white;
+	font-size: 2.9rem;
+	width: 380px;
+	height: 4.1rem;
+	margin: 0;
+	text-align: center;	
+	vertical-align: middle;
+	background-color: #adc867;
+}
+
+.image-container .search-container form {
+	padding: 1rem;
+	background-color: rgba(85,64,125,.67);
+}
+
+.image-container .search-container .search-item {
+	color: black;
+	outline: none;
+	border: none;
+	padding: 0 1rem;
+	margin: 0 0.2rem;
+	width: 14rem;
+	height: 3.3rem;
+}
+
+.image-container .search-container .search-item::placeholder {
+	color: black;
+	font-size: 1.06rem;
+}
+
+.image-container .search-container .btn-submit {
+	border: none;
+	color: white;
+	background-color: #adc867;
+	margin: 0 0.2rem;
+	width: 14rem;
+	height: 3.3rem;
+}
+
+.image-container .search-container .btn-submit span{
+	font-size: 1.1rem;
+}
