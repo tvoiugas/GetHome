@@ -1,0 +1,68 @@
+
+.navbar-head {
+	background-color: white;
+	font-size: 1.1em;
+	align-items: center;
+	justify-content: center;
+	padding-top: 0;
+	height: 4em;
+	box-shadow: 1px 1px 10px lightgray;
+	transition: 0.5s;
+}
+
+.navbar-head .container-fluid {
+	padding: 0;
+}
+
+.navbar-head .navbar-brand {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0 8rem 0 20px;
+}
+
+.navbar-head .nav-item .navbar-link {
+	color: black;
+	display: block;
+	padding: 0.9rem 1rem 0.5rem 1rem;
+	text-decoration: none;
+}
+
+.navbar-head .navbar-submit {
+	margin-left: auto;
+	padding: none;
+	width: 280px;
+	height: 78px;
+	background-color: #adc867;
+}
+
+.navbar-head .navbar-submit .btn-submit {
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 1.1em;
+	color: white;
+	padding: 1.6rem 1rem;
+}
+
+.navbar-head .navbar-toggler {
+	color: black;
+	margin-right: 20px;
+	border: none;
+	box-shadow: none;
+}
+.navbar-head .navbar-toggler-icon {
+	border: none;
+	outline: none;
+}
+
+@media (max-width: 992px) {
+	.navbar-head.show {
+		height: 100%;
+		transition-delay: 0.5s;
+	}
+	.navbar-head .navbar-submit {
+		display: none;
+	}
+}
