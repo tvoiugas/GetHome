@@ -1,5 +1,16 @@
+html {
+	height: 100%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
 
 .navbar-head {
+	position: sticky;
+	top: 0;
 	background-color: white;
 	font-size: 1.1em;
 	align-items: center;
@@ -8,6 +19,14 @@
 	height: 4em;
 	box-shadow: 1px 1px 10px lightgray;
 	transition: 0.5s;
+	transition-delay: 0.5s;
+	z-index: 2;
+}
+
+.navbar-head .collapse.navbar-collapse {
+	height: 4rem;
+	transition: 0.5s;
+	transition-delay: 0.5s;
 }
 
 .navbar-head .container-fluid {
@@ -77,8 +96,14 @@
 
 @media (max-width: 992px) {
 	.navbar-head.show {
-		height: 100%;
+		height: auto;
+		opacity: 1;
 		transition-delay: 0.5s;
+	}
+	.navbar-head.show .collapse.navbar-collapse.show {
+		height: auto;
+		opacity: 1;
+		transition-delay: 0,5s;	
 	}
 	.navbar-head .navbar-submit {
 		display: none;
