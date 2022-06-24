@@ -1,3 +1,117 @@
 from django.db import models
+from django.utils.translation import gettext as _
+from django.contrib.auth import get_user_model
+from django.core.validators import FileExtensionValidator
+from django.utils.text import slugify
 
-# Create your models here.
+class Estate(models.Model):
+    TOWNS_CHOICES = [
+        ('B', 'Бишкек'), ('AD', 'Ак-Джол'), ('AB', 'Ала-Бука'), 
+        ('AT', 'Ала-Тоо'), ('AN', 'Аламедин'), ('AU', 'Алмалуу'),
+        ('AO', 'Ананьево'), ('AR', 'Араван'), ('ARSH', 'Арашан'),
+        ('AI', 'Арчалы'), ('ABI', 'Ат-Башы'), ('BT', 'Бает'),
+        ('BV', 'Баетов'), ('BKN', 'Базар-Коргон'), ('BK', 'Байтик'),
+        ('BAI', 'Бакай-Ата'), ('BDU', 'Бактуу-Долоноту'), ('BI', 'Балыкчы'),
+        ('BN', 'Баткен'), ('BE', 'Беловодское'), ('BKI', 'Беш-Кюнгей'),
+        ('BIK', 'Бирдик'), ('BO', 'Боконбаево'), ('BOI', 'Бостери'),
+        ('BA', 'Буденовка'),  ('BSU', 'Булан-Соготту'), ('VAA', 'Военно-Антоновка'),
+        ('GA', 'Гавриловка'), ('GMA', 'Горная Маевка'), ('GEA', 'Григорьевка'),
+        ('GLA', 'Гульча'), ('DKN', 'Дароот-Коргон'), ('D', 'Дачное(ГЕС-5)'), 
+        ('DZH', 'Джал мкр.'), ('DZHA', 'Джалал-Абад'), ('DZHD', 'Джаны-Джер'),
+        ('DA', 'Дмитриевка'), ('ZHV', 'Жаркынбаев'), ('ZE', 'Заречное'),
+        ('Z', 'Заря'), ('I', 'Ивановка'), ('IA', 'Исфана'),
+        ('KAI', 'Кадамжай'), ('KSI','Каджи-Сай'), ('KN', 'Казарман'),
+        ('KI', 'Каинды'), ('KA', 'Каирма'), ('K', 'Кант'),
+        ('KKI', 'Каныш-Кия'), ('KB', 'Кара-Балта'), ('KK', 'Кара-Кульджа'),
+        ('KO', 'Кара-Ой'), ('KS', 'Кара-Суу'), ('KKU', 'Кара-Куль'), 
+        ('KL', 'Каракол'), ('KT', 'Кашат'), ('KSU', 'Кашка-Суу'),
+        ('KIN', 'Кемин'), ('KEN', 'Кербен'), ('KOE', 'Кировское'),
+        ('KR', 'Кожояр'), ('KTSH', 'Кой-Таш'), ('KDZH', 'Кой-Джар'),
+        ('KOI', 'Кок-Ой'), ('KKA', 'Константиновка'), ('KU', 'Корумду'),
+        ('KOR', 'Кочкор'), ('KORA', 'Кочкор-Ата'), ('KRA', 'Красная Речка'),
+        ('KTU', 'Кунтуу'), ('KAR', 'Кызыл-Адыр'), ('KKIA', 'Кызыл-Кия'),
+        ('KLSU', 'Кызыл-Суу'), ('KLTU', 'Кызыл-Туу'), ('LA', 'Лебединовка'),
+        ('LE', 'Ленинское'), ('LGE', 'Луговое'), ('MA', 'Маевка'),
+        ('MSU', 'Майлуу-Суу'), ('ME', 'Маловодное'), ('MS', 'Манас'),
+        ('MI', 'Массы'), ('MN', 'Милянфан'), ('MKA', 'Михайловка'),
+        ('M', 'Мыкан'), ('N', 'Нарын'), ('NN', 'Нижний Норус'),
+        ('NA', 'Новопавловка'), ('NKA', 'Новопокровка'), ('NT', 'Ноокат'),
+        ('NS', 'Норус'), ('OA', 'Орловка'), ('OS', 'Орто-Сай'),
+        ('O', 'Ош'), ('PA', 'Покровка'), ('PE', 'Пригородное'),
+        ('PN', 'Пульгон'), ('RE', 'Раздольное'), ('SE', 'Садовое (ГЭС-3)'),
+        ('SOE', 'Селекционное'), ('SA', 'Семеновка'), ('S', 'Сокулук'),
+        ('SK', 'Сретенка'), ('STOE', 'Студенческое'), ('SAK', 'Сузак'), 
+        ('STA', 'Сулюкта'), ('T', 'Талас'), ('TI', 'Тамчы'),
+        ('TMK', 'Таш-Мойнок'), ('TR', 'Темир'), ('TA', 'Теплоключенка'),
+        ('TB', 'Тогул Булак'), ('TK', 'Токмок'), ('TL', 'Токтогул'),
+        ('TIK', 'Тынчтык'), ('TUP', 'Тюп'), ('U', 'Узген'),
+        ('CH', 'Чаек'), ('CHR', 'Чалдавар'), ('CHK', 'Чат Кёль'),
+        ('CHT', 'Чок-Тал'), ('CHA', 'Чолпон-Ата'), ('CHSI', 'Чон Сары-Ой'),
+        ('CHAK', 'Чон-Арык'), ('CHD', 'Чон-Далы'), ('CHT', 'Чон-Таш'),
+        ('CHCHK', 'Чункурчак'), ('SHO', 'Шевченко'), ('SHV', 'Шопоков'),
+        ('U', 'Юрьевка'), ('PD', 'пос. Дачный') 
+    ]
+
+    ESTATE_TYPE_CHOICES = [
+        ('H', 'Дом'),
+        ('F', 'Картира')
+    ]
+
+    title = models.CharField(_('Название'), max_length = 256)
+    estate_type = models.CharField(_('Вид собственности'), max_length = 1, choices = ESTATE_TYPE_CHOICES, null = False)
+    slug = models.SlugField(max_length = 256)
+    description = models.TextField(_('Описание'))
+    location = models.CharField(_('Местонахождение'), max_length = 5, choices = TOWNS_CHOICES)
+    posted_on = models.DateField(_('Опубликовано'), auto_now = True)
+    author = models.ForeignKey(get_user_model(), on_delete = models.CASCADE, null = False)
+    price = models.IntegerField(_('Цена'))
+    area = models.IntegerField(_('Площадь'))
+    photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos')
+    video = models.FileField(_('Видео'), upload_to = 'estate_videos', null = True, blank = True,
+        validators = [FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+
+    class Meta:
+        verbose_name = 'Имущество'
+        verbose_name_plural = 'Имущества'
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Estate, self).save(*args, **kwargs)
+
+class Details(models.Model):
+    bathrooms = models.IntegerField(_('Ванные комнаты'))
+    bedrooms = models.IntegerField(_('Спальни'))
+    garages = models.IntegerField(_('Гаражи'), null = True, blank = True)
+    floors = models.IntegerField(_('Количество этажей'), null = True, blank = True)
+    floor_on = models.IntegerField(_('Этаж'))
+    estate = models.OneToOneField(Estate, on_delete = models.CASCADE, primary_key = True)
+
+    class Meta:
+        verbose_name = 'Особенности'
+        verbose_name_plural = 'Особенности'
+
+    def __str__(self):
+        return self.estate.title
+
+    def save(self, *args, **kwargs):
+        if self.estate.estate_type == 'F':
+            self.garages = None
+            self.floors = None
+            super(Details, self).save(*args, **kwargs)
+        else:
+            super(Details, self).save(*args, **kwargs)
+
+
+class Features(models.Model):
+    KIND_CHOICES = [
+        ('HF', 'Пол с подогревом'),
+        ('PO', 'Двор'),
+        ('GN', 'Сад'),
+        ('SP', 'Бассейн'),
+    ]
+
+    kind = models.CharField(max_length = 3, choices = KIND_CHOICES)
+    details = models.ManyToManyField(Details)

@@ -1,26 +1,138 @@
 .super-container {
 	width: 100%;
+	height: 100%;
+}
+
+.super-container .carousel-container {
+	width: 100%;
+	height: 43.2rem;
+	overflow: hidden;
 }
 
 .image-container {
+	position: absolute;
+	padding: 0;
+	display: flex;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 43.2rem;
+	top: 4.4em;
+	right: 100%;
+	animation-duration: 1.5s;
+	animation-name: slideout;
+}
+
+.image-container.active {
+	position: static;
+	overflow: hidden;
 	display: flex;
 	padding: 0;
 	width: 100%;
-	height: 70%;
-	align-items: center;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 	justify-content: center;
+	align-items: center;
+	animation-duration: 1.5s;
+	animation-name: slidein;
 }
 
-.image-container .search-container {
+.image-container .home-container {
+	position: absolute;
+	width: 100%;
+	height: 13rem;
+	top: 8.6rem;
+}
+
+.image-container.active .home-container {
+	position: absolute;
+	width: 100%;
+	height: 13rem;
+	top: 13rem;
+}
+
+.image-container.active .home-container .home-content {
+	color: white;
+	width: 26rem;
+	margin-left: 13rem;
+	padding: 20px 0 20px 0;
+	height: 100%;
+	background-color: rgb(30, 19, 50);
+}
+
+.image-container .home-container .home-content {
+	color: white;
+	width: 26rem;
+	margin-left: 5rem;
+	padding: 20px 0 20px 0;
+	height: 100%;
+	background-color: rgb(30, 19, 50);
+	transition-delay: 0.2s;
+}
+
+.image-container .home-container .home-content h2 {
+	margin: 2px 50px;
+}
+
+.image-container .home-container .home-content p {
+	background-color: #adc867;
+	width: 6rem;
+	font-size: 20px;
+	text-align: center;
+	padding: 5px 10px;
+	margin: 20px 50px;
+}
+
+.next {
+	position: absolute;
+	z-index: 1;
+	right: 40px;
+	top: 24rem;
+	background-color: #adc867; 
+	width: 57px;
+	height: 57px;
+	border: none;
+	outline: none;
+	border-radius: 30px;
+	transition: 0.4s;
+}
+
+.next:hover {
+	background-color: rgb(30, 19, 50);
+}
+
+.next::before {
+	content: '';
+	position: absolute;
+	color: black;
+	border-top: 3px solid white;
+	border-right: 3px solid white;
+	transform: rotate(45deg);
+	top: 23px;
+	left: 22px;
+	width: 10px;
+	height: 10px;
+}
+
+.super-container .search-container {
+	position: absolute;
+	top: 30rem;
+	left: 13rem;
 	width: 61rem;
-	margin-top: 3em;
+	margin-bottom: 2.8rem;
 }
 
-.image-container .search-container .search-title {
+.search-container .search-title {
 	display: block;
 	color: white;
-	font-size: 2.9rem;
-	width: 380px;
+	font-size: 3.2rem;
+	letter-spacing: 2px;
+	width: 425px;
 	height: 4.1rem;
 	margin: 0;
 	text-align: center;	
@@ -28,12 +140,12 @@
 	background-color: #adc867;
 }
 
-.image-container .search-container form {
+.search-container form {
 	padding: 1rem;
 	background-color: rgba(85,64,125,.67);
 }
 
-.image-container .search-container .search-item {
+.search-container .search-item {
 	color: black;
 	outline: none;
 	border: none;
@@ -43,12 +155,12 @@
 	height: 3.3rem;
 }
 
-.image-container .search-container .search-item::placeholder {
+.search-container .search-item::placeholder {
 	color: black;
 	font-size: 1.06rem;
 }
 
-.image-container .search-container .btn-submit {
+.search-container .btn-submit {
 	border: none;
 	color: white;
 	background-color: #adc867;
@@ -57,6 +169,26 @@
 	height: 3.3rem;
 }
 
-.image-container .search-container .btn-submit span{
+.search-container .btn-submit span{
 	font-size: 1.1rem;
+}
+
+@keyframes slidein {
+	0% {
+		margin-left: 100%;
+	}
+
+	100% {
+		margin-left: 0;
+	}
+}
+
+@keyframes slideout {
+	0% {
+		right: 0;
+	}
+
+	100% {
+		right: 100%;
+	}
 }
