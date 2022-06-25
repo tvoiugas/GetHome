@@ -54,7 +54,7 @@ class Estate(models.Model):
 
     ESTATE_TYPE_CHOICES = [
         ('H', 'Дом'),
-        ('F', 'Картира')
+        ('F', 'Квартира')
     ]
 
     title = models.CharField(_('Название'), max_length = 256)
@@ -63,7 +63,8 @@ class Estate(models.Model):
     description = models.TextField(_('Описание'))
     location = models.CharField(_('Местонахождение'), max_length = 5, choices = TOWNS_CHOICES)
     posted_on = models.DateField(_('Опубликовано'), auto_now = True)
-    author = models.ForeignKey(get_user_model(), on_delete = models.CASCADE, null = False)
+    author = models.ForeignKey(get_user_model(), on_delete = models.CASCADE, null = False,
+        related_name = 'estates', verbose_name = 'Автор')
     price = models.IntegerField(_('Цена'))
     area = models.IntegerField(_('Площадь'))
     photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos')
@@ -84,14 +85,15 @@ class Estate(models.Model):
 class Details(models.Model):
     bathrooms = models.IntegerField(_('Ванные комнаты'))
     bedrooms = models.IntegerField(_('Спальни'))
-    garages = models.IntegerField(_('Гаражи'), null = True, blank = True)
-    floors = models.IntegerField(_('Количество этажей'), null = True, blank = True)
+    garages = models.IntegerField(_('Гаражи'), null = True, blank = True, default = '---')
+    floors = models.IntegerField(_('Количество этажей'), null = True, blank = True, default = '---')
     floor_on = models.IntegerField(_('Этаж'))
-    estate = models.OneToOneField(Estate, on_delete = models.CASCADE, primary_key = True)
+    estate = models.OneToOneField(Estate, on_delete = models.CASCADE, primary_key = True,
+        related_name = 'details', verbose_name = 'Имущество')
 
     class Meta:
-        verbose_name = 'Особенности'
-        verbose_name_plural = 'Особенности'
+        verbose_name = 'Детали'
+        verbose_name_plural = 'Детали'
 
     def __str__(self):
         return self.estate.title
@@ -113,5 +115,9 @@ class Features(models.Model):
         ('SP', 'Бассейн'),
     ]
 
-    kind = models.CharField(max_length = 3, choices = KIND_CHOICES)
-    details = models.ManyToManyField(Details)
+    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
+    details = models.ManyToManyField(Details, verbose_name = 'Детали', related_name = 'features')
+
+    class Meta:
+        verbose_name = 'Особенности'
+        verbose_name_plural = 'Особенности'

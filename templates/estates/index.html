@@ -20,12 +20,50 @@
 		</div>
 		<div class="search-container">
 			<h1 class="search-title">Find your home</h1>
-			<form>
+			<form class="search-form">
 				<input class="search-item" type="text" name="" placeholder="Property type">
 				<input class="search-item" type="text" name="" placeholder="No rooms">
 				<input class="search-item" type="text" name="" placeholder="Location">
 				<button type="button" class="btn-submit"><span>SUBMIT LISTING</span></button>
 			</form>
+		</div>
+		<div class="properties-container">
+			<div class="row">
+				<div class="subtitle-section">
+					<h5>LAST DEALS</h5>
+				</div>
+				<div class="title-section">
+					<h1>Featured Properties</h1>
+				</div>
+				<div class="row properties-row">
+					{% for estate in estates %}
+						<div class="col-lg-4">
+							<div class="listing">
+								<div class="listing-image-container">
+									<img src="{{estate.photo.url}}">
+									<div class="tag-section">
+										<a href="#" class="tag-item" style="--clr: #adc867;">{{estate.get_estate_type_display|upper}}</a>
+										<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
+									</div>
+								</div>
+								<div class="tag-price">$ {{estate.price}}</div>
+								<div class="prop-location">
+									<iframe src="{% static 'images/icons/geo.svg' %}" width="20px" height="20px"></iframe>
+									<a href="#" class="prop-location-link">{{estate.get_location_display}}</a>
+								</div>
+								<div class="listing-info">
+									<ul class="listing-items">
+										<li class="listing-item"><img src="{% static 'images/icons/area.png' %}"> {{estate.area}} sq ft</li>
+										<li class="listing-item"><img src="{% static 'images/icons/bath.webp' %}"> {{estate.details.bathrooms}}</li>
+										<li class="listing-item"><img src="{% static 'images/icons/bed.webp' %}"> {{estate.details.bedrooms}}</li>
+										<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}"> {{estate.details.garages}}</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock content %}
