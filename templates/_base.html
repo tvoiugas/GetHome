@@ -44,8 +44,10 @@
 	  </div>
 	</nav>
 	{% block content %}{% endblock content %}
-	{% block javasript %}{% endblock javasript %}
 	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.bundle.min.js.map' %}"></script>
+	<script src="{% static 'js/jquery.min.js' %}"/>
 	<script src="{% static 'js/custom.js' %}"></script>
+	{% block javasript %}{% endblock javasript %}
 </body>
 </html>

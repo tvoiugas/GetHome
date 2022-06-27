@@ -65,6 +65,56 @@
 				</div>
 			</div>
 		</div>
+		<div class="testimonials-container">
+			<div class="row row-eq-height">
+				<div class="col-xl-6">
+					<div class="testimonials-img-container" style="background-image: url({% static 'images/family.webp' %})"></div>
+					<div class="image-overlay"></div>
+				</div>
+				<div class="col-xl-6">
+					<div class="testimonials-content">
+						<div class="subtitle-section">
+							<h5>THE BEST DEALS</h5>
+						</div>
+						<div class="title-section">
+							<h1>Clients testimonials</h1>
+						</div>
+						<div id="indicators" class="carousel slide" data-ride="carousel">
+						  <ol class="carousel-indicators">
+						    <li data-target="#indicators" data-slide-to="0" class="active"></li>
+						    <li data-target="#indicators" data-slide-to="1"></li>
+						    <li data-target="#indicators" data-slide-to="2"></li>
+						  </ol>
+						  <div class="carousel-inner">
+						    <div class="carousel-item active">
+						      <dev class="test-quote">"They helped us find our home"</dev>
+						      <dev class="test-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam porro totam illum culpa numquam molestiae cum, excepturi et saepe dicta eaque, animi? Soluta, ea eaque, qui harum debitis error obcaecati!</dev>
+						      <dev class="test-author">Cristine Smith, Client</dev>
+						    </div>
+						    <div class="carousel-item">
+						      <dev class="test-quote">"They helped us find our home"!!!!</dev>
+						      <dev class="test-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, fuga. Repellat quia incidunt laudantium perferendis accusamus a, placeat fuga, sint vero consequatur autem laboriosam amet ipsam porro quam modi veritatis.</dev>
+						      <dev class="test-author">Cristine Smith, Client</dev>
+						    </div>
+						    <div class="carousel-item">
+						      <dev class="test-quote">"They helped us find our home"!</dev>
+							  <dev class="test-text">Lorem ipsum dolor sit amet consectetur adipisicing, elit. Quos odio eaque iure quas aliquid, adipisci, dolor corrupti molestiae doloribus, recusandae, est inventore eum itaque culpa repudiandae asperiores earum eveniet quasi.</dev>
+							  <dev class="test-author">Cristine Smith, Client</dev>
+						    </div>
+						  </div>
+						  <a class="carousel-control-prev" href="#indicators" role="button" data-slide="prev">
+						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						    <span class="sr-only" style="color: black">Previous</span>
+						  </a>
+						  <a class="carousel-control-next" href="#indicators" role="button" data-slide="next">
+						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						    <span class="sr-only" style="color: black">Next</span>
+						  </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock content %}
 {% block javasript %}<script src="{% static 'estates/js/index.js' %}"></script>{% endblock javasript %}
