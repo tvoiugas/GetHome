@@ -1,6 +1,10 @@
 {% extends '_base.html' %}
 {% load static %}
-{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'estates/css/index.css' %}">{% endblock css %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'estates/css/index.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl-carousel/owl.theme.default.min.css' %}">
+{% endblock css %}
 
 {% block content %}
 	<div class="super-container">
@@ -65,6 +69,53 @@
 				</div>
 			</div>
 		</div>
+		<div class="testimonials-container">
+			<div class="row row-eq-height">
+				<div class="col-xl-6">
+					<div class="testimonials-img-container" style="background-image: url({% static 'images/family.webp' %})"></div>
+					<div class="image-overlay"></div>
+				</div>
+				<div class="col-xl-6">
+					<div class="testimonials-content">
+						<div class="subtitle-section">
+							<h5>THE BEST DEALS</h5>
+						</div>
+						<div class="title-section">
+							<h1>Clients testimonials</h1>
+						</div>
+						<div class="container mt-5 md-5 testimonials-carousel" style="padding: 0">
+							<div id="owl1" class="owl-carousel owl-theme">
+								<div class="item">
+									<div class="test-item">
+										<div class="test-quote">"They helped us find our home"</div>
+										<div class="test-text">Lorem ipsum dolor sit amet, consectetur, adipisicing elit. Veritatis fugit veniam tenetur velit reprehenderit voluptatum illo sed facilis corporis exercitationem commodi, voluptatibus quidem, perspiciatis, doloribus ut neque praesentium perferendis explicabo.</div>
+										<div class="test-author"><span class="author">Cristinne Smith</span><span class="author-type">, Client</span></div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="test-item">
+										<div class="test-quote">"They helped us find our home"</div>
+										<div class="test-text">Lorem ipsum dolor sit amet, consectetur, adipisicing elit. Veritatis fugit veniam tenetur velit reprehenderit voluptatum illo sed facilis corporis exercitationem commodi, voluptatibus quidem, perspiciatis, doloribus ut neque praesentium perferendis explicabo.</div>
+										<div class="test-author"><span class="author">Cristinne Smith</span><span class="author-type">, Client</span></div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="test-item">
+										<div class="test-quote">"They helped us find our home"</div>
+										<div class="test-text">Lorem ipsum dolor sit amet, consectetur, adipisicing elit. Veritatis fugit veniam tenetur velit reprehenderit voluptatum illo sed facilis corporis exercitationem commodi, voluptatibus quidem, perspiciatis, doloribus ut neque praesentium perferendis explicabo.</div>
+										<div class="test-author"><span class="author">Cristinne Smith</span><span class="author-type">, Client</span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock content %}
-{% block javasript %}<script src="{% static 'estates/js/index.js' %}"></script>{% endblock javasript %}
+{% block javasript %}
+	<script src="{% static 'estates/js/index.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'estates/js/owl#1.js' %}"></script>
+{% endblock javasript %}
