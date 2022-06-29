@@ -22,6 +22,4 @@ function showSlide() {
 	};
 };
 
-$('.carousel').carousel()
-
 next.addEventListener('click', nextSlide);
