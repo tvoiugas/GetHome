@@ -380,21 +380,21 @@
 
 @media (max-width: 830px) {
 	.properties-container .col-lg-4 {
-		width: 45rem;
+		width: 29rem;
 		height: 30rem;
-		margin-bottom: 17rem;
+		margin-bottom: 3rem;
 	}
 
 	.col-lg-4 .listing .listing-image-container {
-		width: 43.5rem;
+		width: 27.5rem;
 	}
 
 	.col-lg-4 .listing .tag-price {
-		top: 31.5rem;
+		top: 20.7rem;
 	}
 
 	.col-lg-4 .listing .listing-image-container img {
-		min-height: 521px;
+		min-height: 350px;
 	}
 }
 
@@ -451,10 +451,12 @@
 
 .owl-item.active {
 	display: block;
+	z-index: 5;
 }
 
 .owl-item.cloned {
 	display: block;
+	z-index: 5;
 }
 
 
