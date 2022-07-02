@@ -9,106 +9,154 @@ body {
 	height: 100%;
 }
 
-.navbar-head {
+.first-navbar {
 	position: fixed;
 	top: 0;
-	left: 0;
-	right: 0;
-	background-color: white;
-	font-size: 1.1em;
+	display: flex;
+	z-index: 3;
 	align-items: center;
+	justify-content: flex-start;
+	background-color: #55407d;
+	width: 100%;
+	height: 60px;
+	transition: top 500ms;
+}
+
+.nav-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.first-navbar .links-section {
+	width: 100%;
+	height: 100%;
+}
+
+.first-navbar .links-section ul {
+	display: flex;
+	width: 100%;
+}
+
+.first-navbar .links-section ul li {
+	width: auto;
+	font-size: 11px;
+	padding-top: 18px;
+}
+
+.first-navbar .social-section {
+	margin-right: 30px;
+}
+
+.first-navbar .social-section ul {
+	display: flex;
+	padding: 0;
+	/*flex-wrap: wrap;*/
+}
+
+.first-navbar .social-section ul li {
+	border-radius: 30px;
+	background-color: #adc867;
+	display: flex;
+	color: white;
+	width: 34px !important;
+	height: 34px !important;
+	text-align: center;
+	align-items: center;
+	margin: 17px 10px 0;
 	justify-content: center;
-	padding-top: 0;
-	height: 4em;
-	box-shadow: 1px 1px 10px lightgray;
 	transition: 0.5s;
-	transition-delay: 0.5s;
-	z-index: 2;
+	cursor: pointer;
 }
 
-.navbar-head .collapse.navbar-collapse {
-	height: 4rem;
-	transition: 0.5s;
-	transition-delay: 0.5s;
+.first-navbar .account-section {
+	font-weight: 500;
+	font-size: 15px;
+	padding-right: 30px;
+	color: white;
 }
 
-.navbar-head .container-fluid {
+.first-navbar .account-section a {
+	color: white;
+	text-decoration: none;
+	padding: 0 7px;
+}
+
+.second-navbar {
+	position: fixed;
+	display: flex;
+	background-color: white;
+	z-index: 3;
+	width: 100%;
+	height: 65px;
+	top: 60px;
+	box-shadow: 1px 20px 10px -20px lightgray;
+	transition: top 500ms;
+}
+
+.second-navbar .logo {
+	font-weight: 500;
+	font-size: 26px;
+	color: white;
+	margin-left: 25px;
+	margin-right: 40px;
+	margin-bottom: 4px;
+	text-decoration: none;
+}
+
+.second-navbar .links-section {
+	width: 100%;
+	height: 100%;
+}
+
+.second-navbar .links-section ul {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.second-navbar .links-section ul li {
+	width: auto;
 	padding: 0;
 }
 
-.navbar-head .navbar-brand {
-	font-size: 1.5em;
-	font-weight: bold;
-	margin: 0 8rem 0 20px;
-}
-
-.navbar-head .nav-item {
+.second-navbar .links-section ul .nav-link {
 	width: auto;
-	height: 75px;
-	padding: 0 1rem 0 0;
-}
-
-.navbar-head .nav-item .navbar-link {
-	display: block;
-	width: 100%;
-	height: 94%;
-	text-align: center;
+	height: 65px;
 	color: black;
-	padding: 1.2rem 1rem 0.5rem 1rem;
-	margin-top: 0.4rem;
 	text-decoration: none;
-	transition: 0.3s;
+	padding: 20px 20px;
+	margin: 0 8px;
+	transition: 0.2s;
 }
 
-.navbar-head .nav-item .navbar-link:hover {
+.second-navbar .links-section ul .nav-link.active {
 	color: white;
 	background-color: #adc867;
 }
 
-.navbar-head .nav-item .navbar-link.active {
+.second-navbar .links-section ul .nav-link:hover {
 	color: white;
 	background-color: #adc867;
 }
 
-
-.navbar-head .navbar-submit {
-	margin-left: auto;
-	padding: none;
-	width: 280px;
-	height: 78px;
+.second-navbar .nav-submit {
 	background-color: #adc867;
+	height: 100%;
+	width: 340px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.navbar-head .navbar-submit .btn-submit {
-	display: inline-block;
-	width: 100%;
+.second-navbar .nav-submit a {
+	color: white;
 	text-decoration: none;
-	vertical-align: middle;
-	text-align: center;
-	font-size: 1.1em;
-	color: white;
-	padding: 1.6rem 1rem;
+	font-weight: 500;
 }
 
-.navbar-head .navbar-toggler {
-	color: black;
-	margin-right: 20px;
-	border: none;
-	box-shadow: none;
-}
-
-@media (max-width: 992px) {
-	.navbar-head.show {
-		height: auto;
-		opacity: 1;
-		transition-delay: 0.5s;
-	}
-	.navbar-head.show .collapse.navbar-collapse.show {
-		height: auto;
-		opacity: 1;
-		transition-delay: 0,5s;	
-	}
-	.navbar-head .navbar-submit {
-		display: none;
-	}
+.second-navbar .hum-button {
+	display: none;
 }
