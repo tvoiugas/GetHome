@@ -114,3 +114,23 @@
 .services .service-text {
 	color: #a2b0bf;
 }
+
+.milestones {
+	background-color: #55407d;
+	padding: 3rem;
+	color: white;
+}
+
+.milestones .milestone {
+	padding: 20px 0;
+}
+
+.milestones .milestone .milestone-counter {
+	font-size: 75px;
+	font-weight: bold;
+}
+
+.milestones .milestone .milestone-text {
+	font-weight: 500;
+	font-size: 17px;
+}

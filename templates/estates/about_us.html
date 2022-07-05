@@ -101,7 +101,7 @@
 						<div class="milestone">
 							<div class="milestone-content">
 								<div class="milestone-icon"><img src="{% static 'images/icons/duplex.svg' %}" width="50" height="50"></div>
-								<div class="milestone-counter">425</div>
+								<div id="homes" class="milestone-counter" data-end-value='425' data-speed='3'>425</div>
 								<div class="milestone-text">homes sold</div>
 							</div>
 						</div>
@@ -110,7 +110,7 @@
 						<div class="milestone">
 							<div class="milestone-content">
 								<div class="milestone-icon"><img src="{% static 'images/icons/prize.svg' %}" width="50" height="50"></div>
-								<div class="milestone-counter">18</div>
+								<div id="awards" class="milestone-counter" data-end-value='18' data-speed='80'>18</div>
 								<div class="milestone-text">awards</div>
 							</div>
 						</div>
@@ -119,7 +119,7 @@
 						<div class="milestone">
 							<div class="milestone-content">
 								<div class="milestone-icon"><img src="{% static 'images/icons/home.svg' %}" width="50" height="50"></div>
-								<div class="milestone-counter">25k</div>
+								<div class="milestone-counter"><span id="followers" data-end-value='25' data-speed="80">25</span>k</div>
 								<div class="milestone-text">followers</div>
 							</div>
 						</div>
@@ -128,7 +128,7 @@
 						<div class="milestone">
 							<div class="milestone-content">
 								<div class="milestone-icon"><img src="{% static 'images/icons/rent.svg' %}" width="50" height="50"></div>
-								<div class="milestone-counter">1265</div>
+								<div id="rentals" class="milestone-counter" data-end-value='1265' data-speed="0.4">1265</div>
 								<div class="milestone-text">rentals</div>
 							</div>
 						</div>
@@ -139,3 +139,5 @@
 	</div>
 
 {% endblock content %}
+
+{% block javascript %}<script src="{% static 'estates/js/about_us.js' %}"></script>{% endblock javascript %}
