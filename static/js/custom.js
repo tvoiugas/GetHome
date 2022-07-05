@@ -1,14 +1,14 @@
-const navUL = document.getElementById("nav-links");
 const navLinks = document.querySelectorAll('.nav-link');
 
 const firstNav = document.getElementById("first-navbar");
 const secondNav = document.getElementById("second-navbar");
 
-
-navLinks.forEach(function (navLink) {
-	navLink.addEventListener('click', function () {
-		navLinks.forEach(element => element.classList.remove('active'))
-		navLink.classList.add('active');
+$(document).ready(function () {
+	var url = window.location;
+	navLinks.forEach(function (navLink) {
+		if (navLink.href == url) {
+			navLink.classList.add('active');
+		};
 	});
 });
 

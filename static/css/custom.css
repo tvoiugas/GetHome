@@ -9,6 +9,11 @@ body {
 	height: 100%;
 }
 
+::selection {
+	background-color: #adc867;
+	color: white;
+}
+
 .first-navbar {
 	position: fixed;
 	top: 0;
@@ -37,12 +42,14 @@ body {
 
 .first-navbar .links-section ul {
 	display: flex;
+	list-style-type: none;
 	width: 100%;
 }
 
 .first-navbar .links-section ul li {
 	width: auto;
 	font-size: 11px;
+	padding: 5px;
 	padding-top: 18px;
 }
 
@@ -69,6 +76,11 @@ body {
 	justify-content: center;
 	transition: 0.5s;
 	cursor: pointer;
+	transition: 0.3s;
+}
+
+.first-navbar .social-section ul li:hover {
+	transform: scale(1.2);
 }
 
 .first-navbar .account-section {
@@ -114,11 +126,14 @@ body {
 .second-navbar .links-section ul {
 	display: flex;
 	align-items: center;
+	list-style-type: none;
 	justify-content: flex-start;
 }
 
 .second-navbar .links-section ul li {
 	width: auto;
+	font-weight: 500;
+	font-size: 16px;
 	padding: 0;
 }
 

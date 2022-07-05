@@ -1,0 +1,141 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock title %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'estates/css/about_us.css' %}">{% endblock css %}
+
+
+{% block content %}
+
+	<div class="super-container">
+		<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
+			<h2>About Us</h2>
+		</div>
+		<div class="intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="intro-content">
+							<div class="subtitle-section">THE BEST DEALS</div>
+							<div class="title-section"><h1>Who are we</h1></div>
+							<div class="info-section"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum dolores odit laborum dolor deserunt laudantium iste voluptate, officiis cumque unde ab nesciunt, enim similique molestiae ipsum numquam consequuntur a ad.</p></div>
+							<div class="submit-section"><a href="#">READ MORE</a></div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="intro-image" style="background-image: url({% static 'images/about_us.webp' %})"></div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="services">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+				    	<div class="subtitle-section">THE BEST DEALS</div>
+				    	<div class="title-section"><h1>Services</h1></div>
+				    </div>
+				</div>
+				<div class="row services-row">
+					<div class="col-xl-4 col-md-6">
+						<div class="service">
+							<div class="title-container">
+								<div class="service-icon"><img src="{% static 'images/icons/list.webp' %}" width="38" height="36"></div>
+								<div class="service-title"><h3>Consulting</h3></div>
+							</div>
+							<div class="service-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laudantium animi provident quaerat corporis et eius quisquam?</p></div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-md-6">
+						<div class="service">
+							<div class="title-container">
+								<div class="setvice-icon"><img src="{% static 'images/icons/medal.webp' %}" width="37" height="49"></div>
+								<div class="service-title"><h3>Real estate sales</h3></div>
+							</div>
+							<div class="service-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laudantium animi provident quaerat corporis et eius quisquam?</p></div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-md-6">
+						<div class="service">
+							<div class="title-container">
+								<div class="service-icon"><img src="{% static 'images/icons/rent.webp' %}" width="38" height="50"></div>
+								<div class="service-title"><h3>Renting</h3></div>
+							</div>
+							<div class="service-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laudantium animi provident quaerat corporis et eius quisquam?</p></div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-md-6">
+						<div class="service">
+							<div class="title-container">
+								<div class="setvice-icon"><img src="{% static 'images/icons/meditation.webp' %}" width="32" height="36"></div>
+								<div class="service-title"><h3>Meditation</h3></div>
+							</div>
+							<div class="service-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laudantium animi provident quaerat corporis et eius quisquam?</p></div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-md-6">
+						<div class="service">
+							<div class="title-container">
+								<div class="service-icon"><img src="{% static 'images/icons/evaluation.webp' %}" width="36" height="44"></div>
+								<div class="service-title"><h3>Evaluation</h3></div>
+							</div>
+							<div class="service-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laudantium animi provident quaerat corporis et eius quisquam?</p></div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-md-6">
+						<div class="service">
+							<div class="title-container">
+								<div class="service-icon"><img src="{% static 'images/icons/price.webp' %}" width="34" height="34"></div>
+								<div class="service-title"><h3>Price consulting</h3></div>
+							</div>
+							<div class="service-text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laudantium animi provident quaerat corporis et eius quisquam?</p></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="milestones">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-3 col-md-6">
+						<div class="milestone">
+							<div class="milestone-content">
+								<div class="milestone-icon"><img src="{% static 'images/icons/duplex.svg' %}" width="50" height="50"></div>
+								<div class="milestone-counter">425</div>
+								<div class="milestone-text">homes sold</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-md-6">
+						<div class="milestone">
+							<div class="milestone-content">
+								<div class="milestone-icon"><img src="{% static 'images/icons/prize.svg' %}" width="50" height="50"></div>
+								<div class="milestone-counter">18</div>
+								<div class="milestone-text">awards</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-md-6">
+						<div class="milestone">
+							<div class="milestone-content">
+								<div class="milestone-icon"><img src="{% static 'images/icons/home.svg' %}" width="50" height="50"></div>
+								<div class="milestone-counter">25k</div>
+								<div class="milestone-text">followers</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-md-6">
+						<div class="milestone">
+							<div class="milestone-content">
+								<div class="milestone-icon"><img src="{% static 'images/icons/rent.svg' %}" width="50" height="50"></div>
+								<div class="milestone-counter">1265</div>
+								<div class="milestone-text">rentals</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}

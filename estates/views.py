@@ -9,3 +9,7 @@ def index(request):
 	}
 
 	return render(request, 'estates/index.html', context)
+
+def about_us(request):
+
+	return render(request, 'estates/about_us.html', {})
