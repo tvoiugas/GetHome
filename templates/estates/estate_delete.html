@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% block title %}
+    Удаление блога
+{% endblock title %}
+
+
+{% block content %}
+    <div class="alert">
+        Вы действительно хотите удалить этот блог
+    </div>
+    <button class="btn btn-danger" type="submit">Да, удалить</button>
+	<a href="{% url 'estate_list' %}"
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<h1>Добавление</h1>
+<div class="col-md-5">
+	<form action="" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<label for="id_title">Введите:</label>
+		{% render_field form.title class="form-control" placeholder="title" %}
+		{% if form.title.errors %}
+			<div class="alert alert-danger mt-2" role="alert">
+				<ul>
+					<li>
+						{{form.title.errors|striptags}}
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+		<label for="id_estate_type">Введите:</label>
+		{% render_field form.estate_type class="form-control" placeholder="type" %}
+		{% if form.estate_type.errors %}
+			<div class="alert alert-danger mt-2" role="alert">
+				<ul>
+					<li>
+						{{form.estate_type.errors|striptags}}
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+		<label for="id_slug">Введите:</label>
+		{% render_field form.slug class="form-control" placeholder="slug" %}
+		{% if form.slug.errors %}
+			<div class="alert alert-danger mt-2" role="alert">
+				<ul>
+					<li>
+						{{form.slug.errors|striptags}}
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+		<label for="id_location">Введите:</label>
+		{% render_field form.location class="form-control" placeholder="location" %}
+		{% if form.location.errors %}
+			<div class="alert alert-danger mt-2" role="alert">
+				<ul>
+					<li>
+						{{form.location.errors|striptags}}
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+		<label for="id_author">Введите:</label>
+		{% render_field form.author class="form-control" placeholder="author" %}
+		{% if form.author.errors %}
+			<div class="alert alert-danger mt-2" role="alert">
+				<ul>
+					<li>
+						{{form.author.errors|striptags}}
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+		<label for="id_price">Введите:</label>
+		{% render_field form.price class="form-control" placeholder="price" %}
+		{% if form.price.errors %}
+			<div class="alert alert-danger mt-2" role="alert">
+				<ul>
+					<li>
+						{{form.price.errors|striptags}}
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+		<label for="id_area">Введите:</label>
+		{% render_field form.area class="form-control" placeholder="area" %}
+		{% if form.area.errors %}
+			<div class="alert alert-danger mt-2" role="alert">
+				<ul>
+					<li>
+						{{form.area.errors|striptags}}
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+		<button
+			type="sumbit"
+			class="btn btn-success mt-3">Добавить
+		</button>
+	</form>
+</div>
+
+{% endblock content %}
