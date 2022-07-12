@@ -1,17 +1,17 @@
 {% extends "_base.html" %}
 {% load static %}
 
-{% block content %}
-
-{% block title %}
-    Удаление блога
-{% endblock title %}
+{% block title %}Listing deletion{% endblock title %}
 
 
 {% block content %}
+
     <div class="alert">
-        Вы действительно хотите удалить этот блог
+    	<h1>Are you sure you wanna delete this listing({{estate.title}})?</h1>
     </div>
-    <button class="btn btn-danger" type="submit">Да, удалить</button>
-	<a href="{% url 'estate_list' %}"
+    <div class="actions">
+   		<button class="" type="submit">Yes, delete</button>
+		<a href="{% url 'listings' %}"></a>
+	</div>
+
 {% endblock content %}

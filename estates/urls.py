@@ -1,12 +1,21 @@
 from django.urls import path
 
-from .views import index, estate_create, estate_detail, estate_delete, estate_list, estate_update
+from .views import (
+	index, 
+	about_us, 
+	estate_create, 
+	estate_detail, 
+	estate_delete, 
+	estate_list, 
+	estate_update
+)
 
 urlpatterns = [
 	path('', index, name = 'index'),
-	path('estate_list', estate_list, name = "estate_list"),
-	path('estate_create', estate_create, name = "estate_create"),
-	path('estate_detail', estate_detail, name = "estate_detail"),
-	path('estate_delete', estate_delete, name = "estate_delete"),
-	path('estate_update', estate_update, name = "estate_update"),
+	path('about_us/', about_us, name = 'about_us'),
+	path('listing/', estate_list, name = "listings"),
+	path('listing/add/', estate_create, name = "listing_create"),
+	path('listing/<int:listing_id>/', estate_detail, name = "listing_detail"),
+	path('listing/<int:listing_id>/delete/', estate_delete, name = "listing_delete"),
+	path('listing/<int:listing_id>/edit/', estate_update, name = "listing_update"),
 ]

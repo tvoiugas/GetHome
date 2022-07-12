@@ -4,25 +4,36 @@
 
 
 {% block content %}
-<form action="" method="POST">
-	<div class="container">
-	  <h1>Login</h1>
-	  <hr>
-	  {% csrf_token %}
-	  {% if form.errors %}
-	  	<p>{{form.errors}}</p>
-	  {% endif %}
-	  <label for="login"><b>Login:</b></label>
-	  {{form.username}}
-	  <label for="psw"><b>Password</b></label>
-	  {{form.password}}  	  
-	  <hr>
-  
-	  <button type="submit" class="registerbtn">Login</button>
+	
+	<div class="super-container">
+		<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
+			<h2>Login</h2>
+		</div>
+		<div class="login">
+			<div class="container">
+				<div class="col">
+					<div class="form-container">
+						<form action="" method="POST">
+							{% csrf_token %}
+							{% if form.errors %}
+							  	<p>{{form.errors}}</p>
+							{% endif %}
+							<label for="id_username"><b>Login</b></label>
+							{{form.username}}
+							<label for="id_password"><b>Password</b></label>
+							{{form.password}}  	  
+							<hr>
+						  
+							<button type="submit" class="registerbtn">Login</button>
+						  
+							<div class="signin-section">
+								<a href="{% url 'register_page' %}">Sign up</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-  
-	<div class="container signin">
-		<a href="{% url 'register_page' %}">Sign up</a>
-	</div>
-</form>
+	
 {% endblock content %}

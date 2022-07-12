@@ -1,57 +1,101 @@
 {% extends "_base.html" %}
 {% load static %}
 
-{% block title %} Список {% endblock title %}
+{% block title %} Listings {% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'estates/css/listings.css' %}">{% endblock css %}
+
 {% block content %}
 
-
-<div class="row mb-2">
-	<div class="row mt-3">
-	    <nav aria-label="Page navigation example">
-	      <ul class="pagination justify-content">
-	        <li class="page-item"><a class="page-link" href="{% url 'estate_create' %}">Добавить</a></li>
-	        </ul>
-	    </nav>
+	<div class="super-container">
+		<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
+			<h2>Listings</h2>
+		</div>
+		<div class="search">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="search-container">
+							<form class="search-form" action="" method="POST">
+								{% csrf_token %}
+								<input name="type" type="text" class="listing-input" placeholder="Property type">
+								<input name="no-rooms" type="text" class="listing-input" placeholder="No rooms">
+								<input name="location" type="text" class="listing-input" placeholder="Location">
+								<button class="listing-btn" type="submit" name="submit">SUBMIT LISTING</button>
+							</form>
+							<div class="search-buttons">
+								<div class="search-button" style="--clr: #55407d;"><a href="#">Detailed Search</a></div>
+								<div class="search-button" style="--clr: #adc867;"><a href="#">Show Map</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="listings">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="sorting">
+							<div class="listing-tags">
+								<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+									<li><a href="#">2 beds<span>x</span></a></li>
+									<li><a href="#">2 baths<span>x</span></a></li>
+									<li><a href="#">garage<span>x</span></a></li>
+									<li><a href="#">swimming pool<span>x</span></a></li>
+									<li><a href="#">patio<span>x</span></a></li>
+									<li><a href="#">heated floors<span>x</span></a></li>
+									<li><a href="#">garden<span>x</span></a></li>
+								</ul>
+							</div>
+							<div class="sorting-container">
+								<div id="actual-btn" class="sort">Sort By</div>
+								<ul id="sort-ul" data-condition="off">
+									<li id="sort-li" class="sorting-button">Default</li>
+									<hr>
+									<li id="sort-li" class="sorting-button">Price</li>
+									<hr>
+									<li id="sort-li" class="sorting-button">Area</li>
+								</ul>
+							</div>
+						</div>
+						<div class="listing-container">
+							<div class="listing-box">
+								<div class="row listings-row">
+									{% for estate in estates %}
+										<div class="col-lg-4">
+											<div class="listing">
+												<div class="listing-image-container">
+													<img src="{{estate.photo.url}}">
+													<div class="tag-section">
+														<a href="#" class="tag-item" style="--clr: #adc867;">{{estate.get_estate_type_display|upper}}</a>
+														<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
+													</div>
+												</div>
+												<div class="tag-price">$ {{estate.price}}</div>
+												<div class="prop-location">
+													<iframe src="{% static 'images/icons/geo.svg' %}" width="20px" height="20px"></iframe>
+													<a href="#" class="prop-location-link">{{estate.get_location_display}}</a>
+												</div>
+												<div class="listing-info">
+													<ul class="listing-items">
+														<li class="listing-item"><img src="{% static 'images/icons/area.png' %}"> {{estate.area}} sq ft</li>
+														<li class="listing-item"><img src="{% static 'images/icons/bath.webp' %}"> {{estate.details.bathrooms}}</li>
+														<li class="listing-item"><img src="{% static 'images/icons/bed.webp' %}"> {{estate.details.bedrooms}}</li>
+														<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}"> {{estate.details.garages}}</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
-<div class="row mt-4">
-	<table class="table">
-	  <thead class="thead-dark">
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">author</th>
-	      <th scope="col">location</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	  	  <th scope="row">{{e.id}}</th>
-	  	{% for e in estates %}
-	  	<tr>
-	  	  <td>
-	  	  	<a href="{% url 'estate_detail'  %}">
-	  	  	{{e.title}}
-	  	  	</a>
-	  	  </td>	
-	  	  <td>{{e.author}}</td>
-	  	  <td>{{e.location}}</td>
-  	      <td>
-  	      	<a href="{% url 'estate_update' %}">
-  	      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-  	      	  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-  	      	</a>
-  	      	<a href="{% url 'estate_delete' %}">
-  	      		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-  	      		  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-  	      		</svg>
-  	      	</a>
-  	      	</svg>
-  	      </td>
-  	    </tr>
-  	    {% endfor %}
-  	  </tbody>
-  	</table>
-  </div>
 
-
+{% block javascript %}<script src="{% static 'estates/js/listings.js' %}"></script>{% endblock javascript %}
 {% endblock content %}
