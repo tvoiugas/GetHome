@@ -17,17 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from users.views import login_page, logout_page, register_page, me
 
 
 urlpatterns = [
     # django-admin
     path('admin/', admin.site.urls),
-    path('login_page', login_page, name='login_page'),
-    path('logout_page', logout_page, name='logout_page'),
-    path('register_page', register_page, name='register_page'),
-    path('me', me, name='me'),
     path('', include('estates.urls')),
+    path('users/', include('users.urls')),
 ]
 
 

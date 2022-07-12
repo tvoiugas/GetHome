@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Listing deletion{% endblock title %}
+
+
+{% block content %}
+
+    <div class="alert">
+    	<h1>Are you sure you wanna delete this listing({{estate.title}})?</h1>
+    </div>
+    <div class="actions">
+   		<button class="" type="submit">Yes, delete</button>
+		<a href="{% url 'listings' %}"></a>
+	</div>
+
+{% endblock content %}

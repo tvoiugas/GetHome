@@ -82,12 +82,16 @@
 
 .services .services-row {
 	margin-top: 5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .services .col-xl-4.col-md-6 {
 	background-color: white;
 	margin: 10px 10px;
-	max-width: 420px;
+	padding: 0;
+	max-width: 360px;
 }
 
 .services .col-xl-4.col-md-6:hover {
@@ -133,4 +137,127 @@
 .milestones .milestone .milestone-text {
 	font-weight: 500;
 	font-size: 17px;
+}
+
+.agents {
+	padding: 5rem 0;
+}
+
+.agents .agents-row {
+	align-items: center;
+	justify-content: center;
+}
+
+.agents .agent-col {
+	width: 350px;
+	height: 517px;
+	margin: 20px 1% !important;
+}
+
+.agents .agent {
+	background-color: #f3f7fb;
+	width: 350px;
+	height: 517px;
+}
+
+.agents .agent .agent-image {
+	width: 350px;
+	height: 254px;
+}
+
+.agents .agent .agent-image img {
+	width: 100%;
+	height: 100%;
+}
+
+.agents .agent .agent-content {
+	min-width: 350px;
+	background-color: #f3f7fb;
+	padding: 36px 40px 22px;
+}
+
+.agent-content .agent-title-container {
+	margin-bottom: 25px;
+}
+
+.agent-content .agent-title-container .agent-title a {
+	text-decoration: none;
+	color: black;
+	font-weight: 500;
+	transition: 0.2s;
+}
+
+.agent-content .agent-title-container .agent-title a:hover {
+	color: #adc867;
+}
+
+.agent-content .agent-title-container .agent-type {
+	color: #adc867;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.agent-content .contact-container {
+	color: #6c7079;
+	margin-bottom: 30px;
+}
+
+.agent-content .agent-social ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.agent-content .agent-social ul li {
+	background-color: #dbe7f1;
+	border-radius: 30px;
+	width: 30px;
+	height: 30px;
+	margin: 0 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.agent-content .agent-social ul li:hover {
+	background-color: #adc867;
+}
+
+.agent-content .agent-social ul li a {
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.col-contact {
+	width: 100%;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.col-contact .contact-button {
+	position: relative;
+	width: 247px;
+	height: 61px;
+}
+
+.col-contact .contact-button a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: white;
+	background-color: #abc867;
+	transition: .2s;
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.col-contact .contact-button a:hover {
+	background-color: #1e1332;
 }

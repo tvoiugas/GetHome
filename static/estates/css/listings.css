@@ -1,1 +1,265 @@
-	
+.super-container {
+	width: 100%;
+	height: 100%;
+}
+
+.super-container .paralax-background {
+	width: 100%;
+	height: 300px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.super-container .paralax-background h2 {
+	color: white;
+	margin-top: 7.6rem;
+}
+
+.search {
+	height: 268px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 92px 0 15px;
+}
+
+.search .search-form {
+	width: 100%;
+	height: 5rem;
+	background: #55407d;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.search .search-form input {
+	width: 24%;
+	height: 51px;
+	outline: none;
+	margin: 0 5px;
+}
+
+.search .search-form input::placeholder {
+	color: black;
+	padding-left: 20px;
+}
+
+.search .search-form button {
+	width: 22%;
+	color: white;
+	font-weight: 500;
+	font-size: 14px;
+	height: 51px;
+	border: none;
+	background: #adc867;
+}
+
+.search .search-form button:hover {
+	border: 2px solid white;
+}
+
+.search .search-buttons {
+	display: flex;
+	align-items: center;
+	margin: 21px 0;
+}
+
+.search .search-buttons .search-button {
+	background-color: var(--clr);
+	padding: 10px 20px;
+	margin: 0 13px 0 0;
+	cursor: pointer;
+}
+
+.search .search-buttons .search-button a {
+	text-decoration: none;
+	color: white;
+}
+
+.sorting {
+	display: flex;
+	justify-content: space-between;
+}
+
+.listing-tags ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.listing-tags ul li {
+	width: auto;
+	padding: 10px;
+	margin: 10px;
+	background: #dbe7f1;
+}
+
+.listing-tags ul li a {
+	color: #6c7079;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.listing-tags ul li:hover a, .listing-tags ul li:hover {
+	color: white;
+	background: #adc867;
+}
+
+.listing-tags ul li a span {
+	margin-left: 10px;
+}
+
+.sorting-container {
+	margin-top: 10px;
+}
+
+.sorting-container .sort {
+	position: relative;
+	width: auto;
+	width: 185px;
+	height: 43px;
+	padding-left: 10px;
+	display: flex;
+	align-items: center;
+	border: 2px solid #dbe7f1;
+	cursor: pointer;
+}
+
+.sorting-container .sort {
+	color: #6c7079;
+	font-weight: 500;
+}
+
+.sorting-container .sort::after {
+	position: absolute;
+	right: 15px;
+	content: '';
+	width: 8px;
+	height: 8px;
+	color: #6c7079;
+	transform: rotate(135deg);
+	border-right: 2px solid #dbe7f1;
+	border-top: 2px solid #dbe7f1;
+}
+
+.sorting-container ul {
+	visibility: hidden;
+	padding-left: 21px;
+	padding-top: 8px;
+	padding-bottom: 6px;
+	padding-right: 15px;
+	margin: 0;
+	opacity: 0;
+	box-shadow: 0px 10px 10px lightgray;
+	list-style-type: none;
+	transition: 0.3s;
+}
+
+.sorting-container ul li {
+	color: #6c7079;
+	padding: 5px;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.sorting-container ul hr {
+	color: #6c7079;
+	margin: 5px 0;
+}
+
+.col-lg-4 {
+	margin: 3rem 0;
+}
+
+.listing {
+	display: block;
+	position: relative;
+}
+
+.col-lg-4 .listing .listing-image-container {
+	width: 100%;
+	display: block;
+	position: relative;
+	margin: 0;
+}
+
+.col-lg-4 .listing .listing-image-container img {
+	width: 100%;
+	min-height: 276px;
+}
+
+.col-lg-4 .listing-image-container .tag-section {
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	margin-top: 8px;
+}
+
+.tag-section .tag-item {
+	background-color: var(--clr);
+	width: 5rem;
+	position: relative;
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: none;
+	color: white;
+	padding: 8px 20px 8px 20px;
+	margin-right: 10px;
+}
+
+.col-lg-4 .listing .tag-price {
+	position: absolute;
+	top: 16.08rem;
+	left: 2.4rem;
+	padding: 6px 23px;
+	background-color: #ff006c;
+	color: white;
+}
+
+.col-lg-4 .listing .prop-location {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f3f7fb;
+	width: 100%;
+	height: 6rem;
+}
+
+.col-lg-4 .listing .prop-location .prop-location-link {
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+	font-weight: 500;
+	transition: 0.2s
+}
+
+.col-lg-4 .listing .prop-location .prop-location-link:hover {
+	color: #adc867;
+}
+
+.col-lg-4 .listing .listing-info {
+	background: #f3f7fb;
+	margin-top: 2px;
+	width: 100%;
+	height: 4.2rem;
+
+}
+
+.col-lg-4 .listing .listing-info .listing-items {
+	list-style-type: none;
+	display: flex;
+	font-size: 13px;
+	font-weight: 700;
+    padding: 1.3rem 0;
+    margin: 0;
+	flex-direction: row;
+    justify-content: center;
+}
+
+.col-lg-4 .listing .listing-info .listing-items .listing-item {
+	color: #6c7079;
+	padding: 0 8px;
+}

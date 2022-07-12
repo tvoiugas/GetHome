@@ -59,7 +59,7 @@ class Estate(models.Model):
 
     title = models.CharField(_('Название'), max_length = 256)
     estate_type = models.CharField(_('Вид собственности'), max_length = 1, choices = ESTATE_TYPE_CHOICES, null = False)
-    slug = models.SlugField(max_length = 256)
+    slug = models.SlugField(max_length = 256, blank = True)
     description = models.TextField(_('Описание'))
     location = models.CharField(_('Местонахождение'), max_length = 5, choices = TOWNS_CHOICES)
     posted_on = models.DateField(_('Опубликовано'), auto_now = True)
@@ -116,8 +116,11 @@ class Features(models.Model):
     ]
 
     kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
-    details = models.ManyToManyField(Details, verbose_name = 'Детали', related_name = 'features')
+    details = models.ForeignKey(Details, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE)
 
     class Meta:
         verbose_name = 'Особенности'
         verbose_name_plural = 'Особенности'
+
+    def __str__(self):
+        return self.details.estate.title

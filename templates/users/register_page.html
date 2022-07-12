@@ -4,30 +4,39 @@
 
 
 {% block content %}
-<form action="" method="POST">
-	<div class="container">
-	  <h1>Register</h1>
-	  <hr>
-	  {% csrf_token %}
-	  {% if form.errors %}
-	  	<p>{{form.errors}}</p>
-	  {% endif %}
-	  <label for="login"><b>Login:</b></label>
-	  {{form.username}}
-	  <label for="email"><b>Email</b></label>
-	  {{form.email}}  
-	  <label for="psw"><b>Password</b></label>
-	  {{form.password1}}  
-	  <label for="psw-repeat"><b>Repeat Password</b></label>
-	  {{form.password2}}	  
-	  <hr>
-  
-	  <button type="submit" class="registerbtn">Register</button>
+	<div class="super-container">
+		<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
+			<h2>Register</h2>
+		</div>
+		<div class="register">
+			<div class="container">
+				<div class="col">
+					<div class="form-container">
+						<form action="" method="POST">
+							  {% csrf_token %}
+							  {% if form.errors %}
+							  	<p>{{form.errors}}</p>
+							  {% endif %}
+							  <label for="login"><b>Login</b></label>
+							  {{form.username}}
+							  <label for="email"><b>Email</b></label>
+							  {{form.email}}  
+							  <label for="psw"><b>Password</b></label>
+							  {{form.password1}}  
+							  <label for="psw-repeat"><b>Repeat Password</b></label>
+							  {{form.password2}}	  
+							  <hr>
+						  
+							  <button type="submit" class="registerbtn">Register</button>
+						  
+							<div class="login-section">
+							  <p>Already have an account? <a href="{% url 'login_page' %}">Sign in</a>.</p>
+							</div>
+						</form>
+					</div>
+				</div>	
+			</div>
+		</div>
 	</div>
-  
-	<div class="container signin">
-	  <p>Already have an account? <a href="{% url 'login_page' %}">Sign in</a>.</p>
-	</div>
-</form>
 
 {% endblock content %}

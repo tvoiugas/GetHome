@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}{{estate.title}}{% endblock title %}
+
+{% block content %}
+
+	<div class="row mt-2">
+		<br>{{estate.title}}</br>
+	</div>
+
+	<div class="row mt-3">
+    	<nav aria-label="Page navigation example">
+      		<ul class="pagination justify-content-center">
+       			<li class="page-item"><a class="page-link" href="{% url 'listings' %}">Back to listings</a></li>
+        	</ul>
+    	</nav>
+	</div>
+
+{% endblock content %}

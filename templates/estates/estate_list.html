@@ -1,0 +1,101 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %} Listings {% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'estates/css/listings.css' %}">{% endblock css %}
+
+{% block content %}
+
+	<div class="super-container">
+		<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
+			<h2>Listings</h2>
+		</div>
+		<div class="search">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="search-container">
+							<form class="search-form" action="" method="POST">
+								{% csrf_token %}
+								<input name="type" type="text" class="listing-input" placeholder="Property type">
+								<input name="no-rooms" type="text" class="listing-input" placeholder="No rooms">
+								<input name="location" type="text" class="listing-input" placeholder="Location">
+								<button class="listing-btn" type="submit" name="submit">SUBMIT LISTING</button>
+							</form>
+							<div class="search-buttons">
+								<div class="search-button" style="--clr: #55407d;"><a href="#">Detailed Search</a></div>
+								<div class="search-button" style="--clr: #adc867;"><a href="#">Show Map</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="listings">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="sorting">
+							<div class="listing-tags">
+								<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+									<li><a href="#">2 beds<span>x</span></a></li>
+									<li><a href="#">2 baths<span>x</span></a></li>
+									<li><a href="#">garage<span>x</span></a></li>
+									<li><a href="#">swimming pool<span>x</span></a></li>
+									<li><a href="#">patio<span>x</span></a></li>
+									<li><a href="#">heated floors<span>x</span></a></li>
+									<li><a href="#">garden<span>x</span></a></li>
+								</ul>
+							</div>
+							<div class="sorting-container">
+								<div id="actual-btn" class="sort">Sort By</div>
+								<ul id="sort-ul" data-condition="off">
+									<li id="sort-li" class="sorting-button">Default</li>
+									<hr>
+									<li id="sort-li" class="sorting-button">Price</li>
+									<hr>
+									<li id="sort-li" class="sorting-button">Area</li>
+								</ul>
+							</div>
+						</div>
+						<div class="listing-container">
+							<div class="listing-box">
+								<div class="row listings-row">
+									{% for estate in estates %}
+										<div class="col-lg-4">
+											<div class="listing">
+												<div class="listing-image-container">
+													<img src="{{estate.photo.url}}">
+													<div class="tag-section">
+														<a href="#" class="tag-item" style="--clr: #adc867;">{{estate.get_estate_type_display|upper}}</a>
+														<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
+													</div>
+												</div>
+												<div class="tag-price">$ {{estate.price}}</div>
+												<div class="prop-location">
+													<iframe src="{% static 'images/icons/geo.svg' %}" width="20px" height="20px"></iframe>
+													<a href="#" class="prop-location-link">{{estate.get_location_display}}</a>
+												</div>
+												<div class="listing-info">
+													<ul class="listing-items">
+														<li class="listing-item"><img src="{% static 'images/icons/area.png' %}"> {{estate.area}} sq ft</li>
+														<li class="listing-item"><img src="{% static 'images/icons/bath.webp' %}"> {{estate.details.bathrooms}}</li>
+														<li class="listing-item"><img src="{% static 'images/icons/bed.webp' %}"> {{estate.details.bedrooms}}</li>
+														<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}"> {{estate.details.garages}}</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% block javascript %}<script src="{% static 'estates/js/listings.js' %}"></script>{% endblock javascript %}
+{% endblock content %}

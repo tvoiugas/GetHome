@@ -1,8 +1,33 @@
 * {box-sizing: border-box}
 
+.super-container {
+  width: 100%;
+  height: 100%;
+}
+
+.super-container .paralax-background {
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.super-container .paralax-background h2 {
+  color: white;
+  margin-top: 7.6rem;
+}
+
 /* Add padding to containers */
 .container {
   padding: 16px;
+}
+
+.login {
+  padding: 5rem 0;
 }
 
 /* Full-width input fields */
@@ -44,11 +69,24 @@ hr {
 
 /* Add a blue text color to links */
 a {
-  color: dodgerblue;
+  color: white;
 }
 
 /* Set a grey background color and center the text of the "sign in" section */
-.signin {
+.login .form-container .signin-section {
+  display: flex;
+  height: 60px;
   background-color: #f1f1f1;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.login .form-container .signin-section a {
+  text-decoration: none;
+  color: black;
+}
+
+.login .form-container .signin-section:hover a {
+  color: #abc867;
 }
