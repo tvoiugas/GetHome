@@ -83,13 +83,12 @@ class Estate(models.Model):
         super(Estate, self).save(*args, **kwargs)
 
 class Details(models.Model):
-    bathrooms = models.IntegerField(_('Ванные комнаты'))
-    bedrooms = models.IntegerField(_('Спальни'))
-    garages = models.IntegerField(_('Гаражи'), null = True, blank = True, default = '---')
-    floors = models.IntegerField(_('Количество этажей'), null = True, blank = True, default = '---')
-    floor_on = models.IntegerField(_('Этаж'))
-    estate = models.OneToOneField(Estate, on_delete = models.CASCADE, primary_key = True,
-        related_name = 'details', verbose_name = 'Имущество')
+    bathrooms = models.IntegerField(_('Ванные комнаты'), null = True, blank = True, default = 1)
+    bedrooms = models.IntegerField(_('Спальни'), null = True, blank = True, default = 1)
+    garages = models.IntegerField(_('Гаражи'), null = True, blank = True, default = 0)
+    floors = models.IntegerField(_('Количество этажей'), null = True, blank = True, default = 0)
+    floor_on = models.IntegerField(_('Этаж'), null = True, blank = True)
+    estate = models.OneToOneField(Estate, on_delete = models.CASCADE, related_name = 'details', verbose_name = 'Имущество')
 
     class Meta:
         verbose_name = 'Детали'
@@ -99,12 +98,11 @@ class Details(models.Model):
         return self.estate.title
 
     def save(self, *args, **kwargs):
+        print(self.estate.estate_type)
         if self.estate.estate_type == 'F':
             self.garages = None
             self.floors = None
-            super(Details, self).save(*args, **kwargs)
-        else:
-            super(Details, self).save(*args, **kwargs)
+        super(Details, self).save(*args, **kwargs)
 
 
 class Features(models.Model):
@@ -116,11 +114,12 @@ class Features(models.Model):
     ]
 
     kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
-    details = models.ForeignKey(Details, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE)
+    estate = models.ForeignKey(Estate, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE)
 
     class Meta:
         verbose_name = 'Особенности'
         verbose_name_plural = 'Особенности'
+        unique_together = ('kind', 'estate',)
 
     def __str__(self):
-        return self.details.estate.title
+        return self.estate.title

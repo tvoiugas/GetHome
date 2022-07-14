@@ -27,17 +27,25 @@ def estate_list(request):
 
 @login_required
 def estate_create(request):
+	formset = DetailsFormSet()
+	form = EstateForm()
+	formset_f = FeaturesFormSet()
 	if request.method == 'POST':
-		form = EstateForm(request.POST)
-		if form.is_valid() and formset.is_valid():
-			form.isntance.author = request.user
-			form.save()
-			return redirect('listing_list')
-	else:
-		form = EstateForm()
+		form = EstateForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.instance.author = request.user
+			estate = form.save()
+			formset = DetailsFormSet(request.POST, instance = estate)
+			formset_f = FeaturesFormSet(request.POST, instance = estate)
+			if formset.is_valid() and formset_f.is_valid():
+				formset.save()
+				formset_f.save()
+				return redirect('listings')
 
 	context = {
 		'form': form,
+		'formset': formset,
+		'formset_f': formset_f
 	}
 	return render(request, 'estates/estate_create.html', context)
 

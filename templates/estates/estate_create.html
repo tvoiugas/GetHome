@@ -61,6 +61,34 @@
 									</div>
 								</div>
 								
+								<div class="details">
+									{{formset.management_form}}
+									{{formset.non_form_errors}}
+									{% for form in formset %}
+										<div class="details-tem">
+											{{form.id}}
+											{{form.as_p}}
+											{% for error in form.errors %}
+												{{error}}
+											{% endfor %}
+										</div>
+									{% endfor %}
+								</div>
+
+								<div class="features">
+									{{formset_f.management_form}}
+									{{formset_f.non_form_errors}}
+									{% for form in formset_f %}
+										<div class="features-item">
+											{{form.id}}
+											{{form.as_p}}
+											{% for error in form.errors %}
+												{{error}}
+											{% endfor %}
+										</div>
+									{% endfor %}
+								</div>
+
 								<div class="form-submit">
 									<button type="submit">Add</button>
 								</div>
