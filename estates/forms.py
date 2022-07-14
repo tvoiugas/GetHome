@@ -19,9 +19,18 @@ class DetailForm(forms.ModelForm):
 		model = Details
 		fields = (
 			'bathrooms', 'bedrooms', 'garages',
-			'floors', 'floor_on',
+			'floors', 'floor_on'
 		)
 
 
+class FeaturesForm(forms.ModelForm):
+	class Meta:
+		model = Features
+		fields = (
+			'kind',
+		)
+
+
+
 DetailsFormSet = inlineformset_factory(Estate, Details, form = DetailForm)
-FeaturesFormSet = inlineformset_factory(Details, Features, fields = '__all__', extra = 3)
+FeaturesFormSet = inlineformset_factory(Estate, Features, form = FeaturesForm)
