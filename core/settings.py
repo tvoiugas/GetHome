@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     # Installed
     'widget_tweaks',
-    'dynamic_formsets',
 ]
 
 MIDDLEWARE = [
