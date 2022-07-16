@@ -13,7 +13,7 @@
 			<div class="container listing-add-container">
 				<div class="row">
 					<div class="col">
-						<div class="form-container">
+						<div id="form-container" class="form-container">
 							<form action="" class="listing-form" method="POST" enctype="multipart/form-data">
 								{% csrf_token %}
 								<div class="row form-row">
@@ -60,37 +60,12 @@
 										<div class="listing-textarea">{% render_field form.description %}</div>
 									</div>
 								</div>
-								
-								<div class="details">
-									{{formset.management_form}}
-									{{formset.non_form_errors}}
-									{% for form in formset %}
-										<div class="details-tem">
-											{{form.id}}
-											{{form.as_p}}
-											{% for error in form.errors %}
-												{{error}}
-											{% endfor %}
-										</div>
-									{% endfor %}
-								</div>
-
-								<div class="features">
-									{{formset_f.management_form}}
-									{{formset_f.non_form_errors}}
-									{% for form in formset_f %}
-										<div class="features-item">
-											{{form.id}}
-											{{form.as_p}}
-											{% for error in form.errors %}
-												{{error}}
-											{% endfor %}
-										</div>
-									{% endfor %}
-								</div>
 
 								<div class="form-submit">
-									<button type="submit">Add</button>
+									<button type="submit"
+									hx-get="{% url 'details_create' estate_id %}"
+									hx-target="#form-container"
+									hx-swap="outerHTML">NEXT</button>
 								</div>
 							</form>
 						</div>

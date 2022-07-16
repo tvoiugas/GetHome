@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Estate, Details, Features
+from .models import Estate, Details, Feature
 
 
 class AdminDetail(admin.TabularInline):
@@ -14,6 +14,6 @@ class AdminEstate(admin.ModelAdmin):
 
 
 
-admin.site.register(Estate, AdminEstate)
+admin.site.register(Estate)
 admin.site.register(Details)
-admin.site.register(Features)
+admin.site.register(Feature)
