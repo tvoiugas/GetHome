@@ -105,7 +105,7 @@ class Details(models.Model):
         super(Details, self).save(*args, **kwargs)
 
 
-class Features(models.Model):
+class Feature(models.Model):
     KIND_CHOICES = [
         ('HF', 'Пол с подогревом'),
         ('PO', 'Двор'),
@@ -114,7 +114,7 @@ class Features(models.Model):
     ]
 
     kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
-    estate = models.ForeignKey(Estate, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE)
+    estate = models.ForeignKey(Estate, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE, default=0)
 
     class Meta:
         verbose_name = 'Особенности'
