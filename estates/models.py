@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import FloatField
 from django.utils.translation import gettext as _
 from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
@@ -70,6 +71,9 @@ class Estate(models.Model):
     photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos')
     video = models.FileField(_('Видео'), upload_to = 'estate_videos', null = True, blank = True,
         validators = [FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+
+    # latitude = models.FloatField(_('Координаты восточной широты'))
+    # longitude = models.FloatField(_('Координаты северной долготы'))
 
     class Meta:
         verbose_name = 'Имущество'
