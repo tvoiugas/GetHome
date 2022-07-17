@@ -1,3 +1,28 @@
-<form action="">
-	hi
+{% load widget_tweaks %}
+<form id="details-form" action="" class="estate-form">
+	{% csrf_token %}
+	<div class="row form-row">
+		<div class="col-sm-4">
+			<label for="id_bathromms">Bathrooms</label>
+			<div class="bathrooms">{% render_field form.bathrooms %}</div>
+			<label for="id_bedrooms">Bedrooms</label>
+			<div class="bedrooms">{% render_field form.bedrooms %}</div>
+			<label for="id_garages">Garages</label>
+			<div class="garages">{% render_field form.garages %}</div>
+		</div>
+			<div class="col-sm-4">
+			<label for="id_floors">Floors</label>
+			<div class="floors">{% render_field form.floors %}</div>
+			<label for="id_floor_on">Floor on</label>
+			<div class="floor-on">{% render_field form.floor_on %}</div>
+		</div>
+	</div>
+	<div class="form-submit">
+		<a type="button" href="{% url 'listing_create' %}">PREVIOUS</a>
+		<button id="step-btn" type="submit" 
+		hx-get="{% url 'features_create' %}"
+		hx-target="#details-form"
+		hx-swap="outerHTML", style="display: none;">NEXT</button>
+		<button id="submit-btn" class="submit-btn" type="submit" hx-post="{% url 'details_create' %}" onclick="clickStepBtn('step-btn')">NEXT</button>
+	</div>
 </form>

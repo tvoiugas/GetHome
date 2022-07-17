@@ -1,3 +1,6 @@
+let submitBtn = document.getElementById('submit-btn');
+let stepBtn = document.getElementById('step-btn');
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -12,6 +15,18 @@ function readURL(input) {
     }
 }
 
-$("#img-input").change(function(){
+$("#id_photo").change(function(){
     readURL(this);
 });
+
+
+submitBtn.addEventListener('click', submitAndStep);
+
+function submitAndStep() {
+	stepBtn.click();
+};
+
+function clickStepBtn(id) {
+	stepBtn = document.getElementById(id);
+	stepBtn.click();
+};
