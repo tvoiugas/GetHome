@@ -9,7 +9,7 @@ class EstateForm(forms.ModelForm):
 		fields = (
 			'title', 'price', 'area',
 			'estate_type', 'location',
-			'photo', 'video', 'description',
+			'photo', 'video', 'description'
 		)
 
 
@@ -29,4 +29,4 @@ class FeaturesForm(forms.ModelForm):
 			'kind',
 		)
 
-FeaturesFormSet = inlineformset_factory(Estate, Feature, form = FeaturesForm)
+FeaturesFormSet = inlineformset_factory(Estate, Feature, form = FeaturesForm, extra = 4)

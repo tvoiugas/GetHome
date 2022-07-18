@@ -67,7 +67,7 @@ class Estate(models.Model):
         related_name = 'estates', verbose_name = 'Автор')
     price = models.IntegerField(_('Цена'))
     area = models.IntegerField(_('Площадь'))
-    photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos')
+    photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos/', max_length=255)
     video = models.FileField(_('Видео'), upload_to = 'estate_videos', null = True, blank = True,
         validators = [FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
 
@@ -113,13 +113,12 @@ class Feature(models.Model):
         ('SP', 'Бассейн'),
     ]
 
-    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES, default = None, null = True)
+    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
     estate = models.ForeignKey(Estate, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE, default=0)
 
     class Meta:
         verbose_name = 'Особенности'
         verbose_name_plural = 'Особенности'
-        unique_together = ('kind', 'estate',)
 
     def __str__(self):
         return self.estate.title

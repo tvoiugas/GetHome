@@ -12,10 +12,10 @@ function readURL(input) {
         }
 
         reader.readAsDataURL(input.files[0]);
-    }
-}
+    };
+};
 
-$("#id_photo").change(function(){
+$("#id_photo").change(function() {
     readURL(this);
 });
 

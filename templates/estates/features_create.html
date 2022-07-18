@@ -1,4 +1,4 @@
-<form id="features-form" action="{% url 'listings' %}" class="estate-form">
+<form id="features-form" action="{% url 'listings' %}" class="estate-form" enctype="multipart/form-data" method="POST">
 	{% load widget_tweaks %}
 	{% csrf_token %}
 	{{formset.management_form}}
@@ -13,6 +13,7 @@
 		hx-target="#features-form"
 		hx-swap="outerHTML">PREVIOUS</button>
 		<button type="submit"
+		hx-push-url="true"
 		hx-post="{% url 'features_create' %}">FINISH</button>
 	</div>
 </form>

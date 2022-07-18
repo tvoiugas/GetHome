@@ -6,6 +6,12 @@ from django.urls import reverse
 from .forms import EstateForm, DetailsForm, FeaturesForm, FeaturesFormSet
 from .models import Estate, Details, Feature
 
+class HTTPResponseHXRedirect(HttpResponseRedirect):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self['HX-Redirect']=self['Location']
+    status_code = 200
+
 def index(request):
 	estates = Estate.objects.all()[:3]
 	context = {
@@ -28,7 +34,7 @@ def estate_list(request):
 
 @login_required
 def estate_create(request):
-	form = EstateForm(request.POST, request.FILES)
+	form = EstateForm(request.POST or None, request.FILES)
 
 	if request.method == "POST":
 		initial = {
@@ -41,9 +47,8 @@ def estate_create(request):
 			'photo': request.session.get('photo', None),
 			'video': request.session.get('video', None)
 		}
-		form = EstateForm(request.POST, request.FILES)
+		form = EstateForm(request.POST, request.FILES, initial = initial)
 		if form.is_valid():
-			print(request.section)
 			request.session['title'] = form.cleaned_data['title']
 			request.session['estate_type'] = form.cleaned_data['estate_type']
 			request.session['description'] = form.cleaned_data['description']
@@ -54,11 +59,9 @@ def estate_create(request):
 			request.session['video'] = form.cleaned_data['video']
 			return HttpResponse(status = 204)
 		else:
-			print("КУСОК ТУПОГО ДЕРЬМА")
 			for field in form:
 				for error in field.errors:
 					print(error, field)
-
 	context = {
 		'form': form,
 	}
@@ -94,7 +97,7 @@ def features_create(request):
 	formset = FeaturesFormSet()
 
 	if request.method == "POST":
-		formset = FeaturesFormSet(request.POST)
+		formset = FeaturesFormSet(request.POST, request.FILES)
 		if formset.is_valid():
 			estate = Estate.objects.create(
 				title = request.session['title'],
@@ -118,7 +121,7 @@ def features_create(request):
 			)
 			for form in formset:
 				form.save()
-			return HttpResponseRedirect(reverse('listings'))
+			return HTTPResponseHXRedirect(reverse('listings'))
 
 	context = {
 		'formset': formset

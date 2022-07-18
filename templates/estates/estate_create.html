@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col">
 						<div id="form-container" class="form-container">
-							<form action="" id="listing-form" class="estate-form" method="POST" enctype="multipart/form-data" hx-post="{% url 'listing_create' %}">
+							<form method="POST" enctype="multipart/form-data" action="" id="listing-form" class="estate-form">
 								{% csrf_token %}
 								<div class="row form-row">
 									<div class="col-lg-4">
@@ -40,7 +40,7 @@
 												</svg>
 											</div>
 											<div class="listing-media">
-												{% render_field form.photo %}
+												{% render_field form.photo  %}
 												<img id="img-show" src="#" alt="" style="display: none;">
 											</div>
 										</label>
@@ -66,7 +66,7 @@
 									hx-get="{% url 'details_create' %}"
 									hx-target="#listing-form"
 									hx-swap="outerHTML" style="display: none;">NEXT</button>
-									<button id="submit-btn" type="submit" hx-post="{% url 'listing_create' %}">NEXT</button>
+									<button id="submit-btn" type="submit" hx-post="{% url 'listing_create' %}" onclick="clickStepBtn('step-btn')">NEXT</button>
 								</div>
 							</form>
 						</div>
@@ -75,11 +75,8 @@
 			</div>
 		</div>
 	</div>
-
-{% block javascript %}
 	<script src="{% static 'js/jquery.min.js' %}"/>
  	<script type="text/javascript" src="{% static 'js/jQuery.js' %}"></script>
  	<script src="{% static 'estates/js/listing_add.js' %}"></script>
-{% endblock javascript %}
 
 {% endblock content %}
