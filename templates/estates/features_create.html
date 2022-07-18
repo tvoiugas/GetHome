@@ -1,0 +1,19 @@
+<form id="features-form" action="{% url 'listings' %}" class="estate-form" enctype="multipart/form-data" method="POST">
+	{% load widget_tweaks %}
+	{% csrf_token %}
+	{{formset.management_form}}
+	{{formset.non_form_errors}}
+	<div class="heated-floors"><input class="checkbox-input" type="checkbox" name="features-0-kind" id="id_features-0-kind" value="HF">Heated floors</div>
+	<div class="heated-floors"><input class="checkbox-input" type="checkbox" name="features-1-kind" id="id_features-1-kind" value="PO">Patio</div>
+	<div class="heated-floors"><input class="checkbox-input" type="checkbox" name="features-2-kind" id="id_features-2-kind" value="GN">Garden</div>
+	<div class="heated-floors"><input class="checkbox-input" type="checkbox" name="features-3-kind" id="id_features-3-kind" value="SP">Swimming pool</div>
+	<div class="form-submit">
+		<button type="submit"
+		hx-get="{% url 'details_create' %}"
+		hx-target="#features-form"
+		hx-swap="outerHTML">PREVIOUS</button>
+		<button type="submit"
+		hx-push-url="true"
+		hx-post="{% url 'features_create' %}">FINISH</button>
+	</div>
+</form>
