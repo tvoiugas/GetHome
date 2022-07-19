@@ -113,7 +113,7 @@ class Feature(models.Model):
         ('SP', 'Бассейн'),
     ]
 
-    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
+    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES, default='HF')
     estate = models.ForeignKey(Estate, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE, default=0)
 
     class Meta:

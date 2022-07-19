@@ -1,9 +1,10 @@
+from re import T
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-	photo = models.ImageField(upload_to = 'users')
+	photo = models.ImageField(upload_to = 'users', null=True)
 	birth_date = models.DateField()
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'profile')
 
