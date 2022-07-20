@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import EstateForm, DetailsForm, FeaturesForm
 from .models import Estate, Details, Feature
-
+from .filters import EstateFilter
 def index(request):
 	estates = Estate.objects.all()[:3]
 	context = {
@@ -19,8 +19,10 @@ def about_us(request):
 
 def estate_list(request):
 	estates = Estate.objects.all()
+	f= EstateFilter(request.GET, queryset=Estate.objects.all())
 	context = {
-		'estates': estates
+		'estates': estates,
+		'f': f
 	}
 
 	return render(request, 'estates/estate_list.html', context)
