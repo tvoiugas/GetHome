@@ -8,6 +8,9 @@ from django.utils.text import slugify
 class Tag(models.Model):
     name = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.name
+
 class Estate(models.Model):
     TOWNS_CHOICES = [
         ('B', 'Бишкек'), ('AD', 'Ак-Джол'), ('AB', 'Ала-Бука'), 

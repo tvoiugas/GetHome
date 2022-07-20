@@ -28,12 +28,11 @@ class FeaturesForm(forms.ModelForm):
 		fields = (
 			'kind',
 		)
+FeaturesFormSet = inlineformset_factory(Estate, Feature, form = FeaturesForm, extra = 4)
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = (
+            'name',
+        )
 
-<<<<<<< HEAD
-# class TagForm(forms.ModelForm):
-#     class Meta:
-#         model = Tag
-#         fields = (
-#             'name',
-#         )
-# =======

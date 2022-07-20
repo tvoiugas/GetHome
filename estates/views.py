@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from .forms import EstateForm, DetailsForm, FeaturesForm, FeaturesFormSet
 from .models import Estate, Details, Feature
-# from .filters import EstateFilter
+from .filters import EstateFilter
 
 
 class HTTPResponseHXRedirect(HttpResponseRedirect):
