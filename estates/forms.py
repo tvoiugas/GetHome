@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import inlineformset_factory
 
 from estates.models import Estate, Details, Feature, Tag
 
@@ -6,9 +7,9 @@ class EstateForm(forms.ModelForm):
 	class Meta:
 		model = Estate
 		fields = (
-			'title', 'estate_type', 'description',
-			'location', 'price', 'area',
-			'photo', 'video'
+			'title', 'price', 'area',
+			'estate_type', 'location',
+			'photo', 'video', 'description'
 		)
 
 
@@ -28,9 +29,11 @@ class FeaturesForm(forms.ModelForm):
 			'kind',
 		)
 
-class TagForm(forms.ModelForm):
-    class Meta:
-        model = Tag
-        fields = (
-            'name',
-        )
+<<<<<<< HEAD
+# class TagForm(forms.ModelForm):
+#     class Meta:
+#         model = Tag
+#         fields = (
+#             'name',
+#         )
+# =======

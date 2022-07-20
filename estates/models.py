@@ -71,7 +71,7 @@ class Estate(models.Model):
         related_name = 'estates', verbose_name = 'Автор')
     price = models.IntegerField(_('Цена'))
     area = models.IntegerField(_('Площадь'))
-    photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos')
+    photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos/', max_length=255)
     video = models.FileField(_('Видео'), upload_to = 'estate_videos', null = True, blank = True,
         validators = [FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     tags = models.ManyToManyField(Tag, verbose_name="теги", related_name='estate')
@@ -127,7 +127,6 @@ class Feature(models.Model):
     class Meta:
         verbose_name = 'Особенности'
         verbose_name_plural = 'Особенности'
-        unique_together = ('kind', 'estate',)
 
     def __str__(self):
         return self.estate.title
