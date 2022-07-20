@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 {% load static %}
-
+{% load widget_tweaks %}
 {% block title %} Listings {% endblock title %}
 
 {% block css %}<link rel="stylesheet" href="{% static 'estates/css/listings.css' %}">{% endblock css %}
@@ -47,6 +47,11 @@
 									<li><a href="#">heated floors<span>x</span></a></li>
 									<li><a href="#">garden<span>x</span></a></li>
 								</ul>
+								<form action="">
+									<label for="id_tags">теги</label>  
+      								{% render_field f.form.tags %}
+     								<button>поиск</button>
+								</form>
 							</div>
 							<div class="sorting-container">
 								<div id="actual-btn" class="sort">Sort By</div>
@@ -62,7 +67,7 @@
 						<div class="listing-container">
 							<div class="listing-box">
 								<div class="row listings-row">
-									{% for estate in estates %}
+									{% for estate in f.qs %}
 										<div class="col-lg-4">
 											<div class="listing">
 												<div class="listing-image-container">

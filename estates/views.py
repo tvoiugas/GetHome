@@ -5,6 +5,8 @@ from django.urls import reverse
 
 from .forms import EstateForm, DetailsForm, FeaturesForm, FeaturesFormSet
 from .models import Estate, Details, Feature
+from .filters import EstateFilter
+
 
 class HTTPResponseHXRedirect(HttpResponseRedirect):
     def __init__(self, *args, **kwargs):
@@ -26,8 +28,10 @@ def about_us(request):
 
 def estate_list(request):
 	estates = Estate.objects.all()
+	f= EstateFilter(request.GET, queryset=Estate.objects.all())
 	context = {
-		'estates': estates
+		'estates': estates,
+		'f': f
 	}
 
 	return render(request, 'estates/estate_list.html', context)
