@@ -1,0 +1,7 @@
+
+{% autoescape off %}
+    Привет
+    Нажми, чтобы подтвердить на почту
+    http://{{domain}}{% url 'activation' uidb64=uid token=token %}
+{% endautoescape %}
+
