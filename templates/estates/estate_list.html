@@ -63,12 +63,18 @@
 										<li id="sort-li" class="sorting-button">Price</li>
 										<hr>
 										<li id="sort-li" class="sorting-button">Area</li> -->
-										<label for="default" class="sorting-button" id="sort-li">Default</label>
+										<!-- <label for="default" class="sorting-button" id="sort-li">Default</label>
 										<input id="default" type="submit" class="sorting-button" name="default" style="display: none;" value="default">
 										<label for="price" class="sorting-button" id="sort-li">Price</label>
 										<input id="price" type="submit" class="sorting-button" name="price" style="display: none;" value="price">
 										<label for="area" class="sorting-button" id="sort-li">Area</label>
-										<input id="area" type="submit" class="sorting-button" name="area" style="display: none;" value="area">
+										<input id="area" type="submit" class="sorting-button" name="area" style="display: none;" value="area"> -->
+										<select name="sort_by" id="id_sort_by" multiple="">
+											<option id="sort-li" value="default" type="submit" class="sorting-button">Default</option>
+											<option id="sort-li" value="price" class="sorting-button">Price</option>
+											<option id="sort-li" value="area" class="sorting-button">Area</option>
+										</select>
+										<button type="subimit">Submit</button>
 									</ul>
 								</form>
 							</div>
