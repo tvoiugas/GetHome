@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 {% load static %}
-
+{% load widget_tweaks %}
 {% block title %} Listings {% endblock title %}
 
 {% block css %}<link rel="stylesheet" href="{% static 'estates/css/listings.css' %}">{% endblock css %}
@@ -47,26 +47,46 @@
 									<li><a href="#">heated floors<span>x</span></a></li>
 									<li><a href="#">garden<span>x</span></a></li>
 								</ul>
+								<form action="">
+									<label for="id_tags">теги</label>  
+      								{% render_field f.form.tags %}
+     								<button>поиск</button>
+								</form>
 							</div>
 							<div class="sorting-container">
-								<div id="actual-btn" class="sort">Sort By</div>
-								<ul id="sort-ul" data-condition="off">
-									<li id="sort-li" class="sorting-button">Default</li>
-									<hr>
-									<li id="sort-li" class="sorting-button">Price</li>
-									<hr>
-									<li id="sort-li" class="sorting-button">Area</li>
-								</ul>
+								<form action="" method="">
+									{% csrf_token %}
+									<div id="actual-btn" class="sort">Sort By</div>
+									<ul id="sort-ul" data-condition="off">
+										<!-- <li id="sort-li" class="sorting-button">Default</li>
+										<hr>
+										<li id="sort-li" class="sorting-button">Price</li>
+										<hr>
+										<li id="sort-li" class="sorting-button">Area</li> -->
+										<!-- <label for="default" class="sorting-button" id="sort-li">Default</label>
+										<input id="default" type="submit" class="sorting-button" name="default" style="display: none;" value="default">
+										<label for="price" class="sorting-button" id="sort-li">Price</label>
+										<input id="price" type="submit" class="sorting-button" name="price" style="display: none;" value="price">
+										<label for="area" class="sorting-button" id="sort-li">Area</label>
+										<input id="area" type="submit" class="sorting-button" name="area" style="display: none;" value="area"> -->
+										<select name="sort" id="id_sort_by">
+											<option id="sort-li" value="price" type="submit" class="sorting-button">Default</option>
+											<option id="sort-li" value="price" class="sorting-button">Price</option>
+											<option id="sort-li" value="area" class="sorting-button">Area</option>
+										</select>
+										<button type="subimit">Submit</button>
+									</ul>
+								</form>
 							</div>
 						</div>
 						<div class="listing-container">
 							<div class="listing-box">
 								<div class="row listings-row">
-									{% for estate in estates %}
+									{% for estate in f.qs %}
 										<div class="col-lg-4">
 											<div class="listing">
 												<div class="listing-image-container">
-													<img src="{{estate.photo.url}}">
+													<a href="{% url 'listing_detail' estate.id %}"><img src="{{estate.photo.url}}"></a>
 													<div class="tag-section">
 														<a href="#" class="tag-item" style="--clr: #adc867;">{{estate.get_estate_type_display|upper}}</a>
 														<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
@@ -82,7 +102,7 @@
 														<li class="listing-item"><img src="{% static 'images/icons/area.png' %}"> {{estate.area}} sq ft</li>
 														<li class="listing-item"><img src="{% static 'images/icons/bath.webp' %}"> {{estate.details.bathrooms}}</li>
 														<li class="listing-item"><img src="{% static 'images/icons/bed.webp' %}"> {{estate.details.bedrooms}}</li>
-														<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}"> {{estate.details.garages}}</li>
+														<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}">{{estate.details.garages}}</li>
 													</ul>
 												</div>
 											</div>
