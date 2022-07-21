@@ -35,4 +35,3 @@ class TagForm(forms.ModelForm):
         fields = (
             'name',
         )
-
