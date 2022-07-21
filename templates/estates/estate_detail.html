@@ -5,10 +5,33 @@
 
 {% block content %}
 
-	<div class="row mt-2">
-		<br>{{estate.title}}</br>
-	</div>
-
+<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
+	<h2>Listings</h2>
+</div>
+<div class="row mt-3">
+    	<nav aria-label="Page navigation example">
+      		<ul class="pagination justify-content-center">
+       			<li class="page-item"><a class="page-link" href="{% url 'listings' %}">Back to listings</a></li>
+        	</ul>
+    	</nav>
+</div>
+	<div class="row mt-4">
+		<img src="{{estate.photo.url}}">
+		<br><strong>{{estate.title}}</strong></br>
+		<br>Описание: {{estate.description}}</br>
+		<br>Дата объявления: {{estate.posted_on}}</br>
+		<br>Локация: {{estate.get_location_display}}</br>
+		<br>Цена: {{estate.price}} $</br>
+		<br>Жилая площадь: {{estate.area}} m²</br>
+		<br>кол-во комнат: {{estate.details.bedrooms}}</br>
+		<br>кол-во caн-узлов: {{estate.details.bathrooms}}</br>
+		<br>кол-во гаражей: {{estate.details.garages}}</br>
+		<br>кол-во этажей: {{estate.details.floors}}</br>
+		<br>этаж: {{estate.details.floor_on}}</br>
+		{% for feature in estate.features.all %}
+			<br>Особенности: {{feature.get_kind_display}}</br>
+		{% endfor %}
+		<br>Автор: {{estate.author}}</br>
 	<div class="row mt-3">
     	<nav aria-label="Page navigation example">
       		<ul class="pagination justify-content-center">

@@ -86,7 +86,7 @@
 										<div class="col-lg-4">
 											<div class="listing">
 												<div class="listing-image-container">
-													<img src="{{estate.photo.url}}">
+													<a href="{% url 'listing_detail' estate.id %}"><img src="{{estate.photo.url}}"></a>
 													<div class="tag-section">
 														<a href="#" class="tag-item" style="--clr: #adc867;">{{estate.get_estate_type_display|upper}}</a>
 														<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
