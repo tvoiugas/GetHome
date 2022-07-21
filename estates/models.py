@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from django.forms import FloatField
 from django.utils.translation import gettext as _
@@ -7,6 +8,10 @@ from django.utils.text import slugify
 
 class Tag(models.Model):
     name = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name = 'Тег'
+        verbose_name_plural = 'Теги'
 
     def __str__(self):
         return self.name
@@ -124,7 +129,7 @@ class Feature(models.Model):
         ('SP', 'Бассейн'),
     ]
 
-    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
+    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES, null=True)
     estate = models.ForeignKey(Estate, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE, default=0)
 
     class Meta:
