@@ -54,14 +54,23 @@
 								</form>
 							</div>
 							<div class="sorting-container">
-								<div id="actual-btn" class="sort">Sort By</div>
-								<ul id="sort-ul" data-condition="off">
-									<li id="sort-li" class="sorting-button">Default</li>
-									<hr>
-									<li id="sort-li" class="sorting-button">Price</li>
-									<hr>
-									<li id="sort-li" class="sorting-button">Area</li>
-								</ul>
+								<form action="" method="post">
+									{% csrf_token %}
+									<div id="actual-btn" class="sort">Sort By</div>
+									<ul id="sort-ul" data-condition="off">
+										<!-- <li id="sort-li" class="sorting-button">Default</li>
+										<hr>
+										<li id="sort-li" class="sorting-button">Price</li>
+										<hr>
+										<li id="sort-li" class="sorting-button">Area</li> -->
+										<label for="default" class="sorting-button" id="sort-li">Default</label>
+										<input id="default" type="submit" class="sorting-button" name="default" style="display: none;" value="default">
+										<label for="price" class="sorting-button" id="sort-li">Price</label>
+										<input id="price" type="submit" class="sorting-button" name="price" style="display: none;" value="price">
+										<label for="area" class="sorting-button" id="sort-li">Area</label>
+										<input id="area" type="submit" class="sorting-button" name="area" style="display: none;" value="area">
+									</ul>
+								</form>
 							</div>
 						</div>
 						<div class="listing-container">
@@ -87,7 +96,7 @@
 														<li class="listing-item"><img src="{% static 'images/icons/area.png' %}"> {{estate.area}} sq ft</li>
 														<li class="listing-item"><img src="{% static 'images/icons/bath.webp' %}"> {{estate.details.bathrooms}}</li>
 														<li class="listing-item"><img src="{% static 'images/icons/bed.webp' %}"> {{estate.details.bedrooms}}</li>
-														<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}"> {{estate.details.garages}}</li>
+														<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}">{{estate.details.garages}}</li>
 													</ul>
 												</div>
 											</div>

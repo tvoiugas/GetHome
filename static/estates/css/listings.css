@@ -158,7 +158,7 @@
 	transition: 0.3s;
 }
 
-.sorting-container ul li {
+.sorting-container ul .sorting-button {
 	color: #6c7079;
 	padding: 5px;
 	font-size: 15px;
