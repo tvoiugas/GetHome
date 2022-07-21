@@ -6,7 +6,7 @@
 {% block content %}
 	<div class="super-container">
 		<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
-			<h2>Register</h2>
+			<h2>Registration</h2>
 		</div>
 		<div class="register">
 			<div class="container">
@@ -17,10 +17,21 @@
 							  {% if form.errors %}
 							  	<p>{{form.errors}}</p>
 							  {% endif %}
-							  <label for="login"><b>Login</b></label>
+							  {% if profile.errors %}
+							  	<p>{{profile.errors}}</p>
+							  {% endif %}
+							  <label for="first_name"><b>First Name</b></label>
+							  {{form.first_name}}
+							  <label for="last_name"><b>Last Name</b></label>
+							  {{form.last_name}}
+							  <label for="birth_date"><b>Birth Date</b></label>
+							  {{form.birth_date}}
+							  <label for="username"><b>Username</b></label>
 							  {{form.username}}
 							  <label for="email"><b>Email</b></label>
-							  {{form.email}}  
+							  {{form.email}}
+							  <label for="phone_number"><b>Phone Number</b></label>
+							  {{form.phone_number}}  
 							  <label for="psw"><b>Password</b></label>
 							  {{form.password1}}  
 							  <label for="psw-repeat"><b>Repeat Password</b></label>

@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os, sys
-import django
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -42,12 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # Local
     'users',
     'estates',
 
+
     # Installed
     'widget_tweaks',
+    'django_filters',
     'phonenumber_field',
 ]
 

@@ -1,8 +1,12 @@
 from django.db import models
+from django.forms import FloatField
 from django.utils.translation import gettext as _
 from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
 from django.utils.text import slugify
+
+class Tag(models.Model):
+    name = models.CharField(max_length=20)
 
 class Estate(models.Model):
     TOWNS_CHOICES = [
@@ -67,9 +71,13 @@ class Estate(models.Model):
         related_name = 'estates', verbose_name = 'Автор')
     price = models.IntegerField(_('Цена'))
     area = models.IntegerField(_('Площадь'))
-    photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos/', max_length=255)
+    photo = models.ImageField(_('Изображение'), upload_to = 'estate_photos')
     video = models.FileField(_('Видео'), upload_to = 'estate_videos', null = True, blank = True,
         validators = [FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    tags = models.ManyToManyField(Tag, verbose_name="теги", related_name='estate')
+
+    # latitude = models.FloatField(_('Координаты восточной широты'))
+    # longitude = models.FloatField(_('Координаты северной долготы'))
 
     class Meta:
         verbose_name = 'Имущество'
@@ -113,12 +121,13 @@ class Feature(models.Model):
         ('SP', 'Бассейн'),
     ]
 
-    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES, default='HF')
+    kind = models.CharField(_('Тип'), max_length = 3, choices = KIND_CHOICES)
     estate = models.ForeignKey(Estate, verbose_name = 'Детали', related_name = 'features', on_delete = models.CASCADE, default=0)
 
     class Meta:
         verbose_name = 'Особенности'
         verbose_name_plural = 'Особенности'
+        unique_together = ('kind', 'estate',)
 
     def __str__(self):
         return self.estate.title
