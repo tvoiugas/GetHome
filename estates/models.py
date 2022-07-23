@@ -1,10 +1,10 @@
 from tabnanny import verbose
 from django.db import models
-from django.forms import FloatField
 from django.utils.translation import gettext as _
 from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
 from django.utils.text import slugify
+from django_earthdistance.models import EarthDistanceQuerySet
 
 
 class Tag(models.Model):
@@ -98,8 +98,10 @@ class Estate(models.Model):
     tags = models.ManyToManyField(
         Tag, verbose_name="теги", related_name='estate')
 
-    # latitude = models.FloatField(_('Координаты восточной широты'))
-    # longitude = models.FloatField(_('Координаты северной долготы'))
+    latitude = models.FloatField(_('Координаты восточной широты'), null=True)
+    longitude = models.FloatField(_('Координаты северной долготы'), null=True)
+
+    objects = EarthDistanceQuerySet.as_manager()
 
     class Meta:
         verbose_name = 'Имущество'
