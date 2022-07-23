@@ -4,14 +4,13 @@ from .models import Estate, Details, Feature, Tag
 
 
 class AdminDetail(admin.TabularInline):
-	model = Details
+    model = Details
 
 
 class AdminEstate(admin.ModelAdmin):
-	inlines = [
-		AdminDetail,
-	]
-
+    inlines = [
+        AdminDetail,
+    ]
 
 
 admin.site.register(Estate)

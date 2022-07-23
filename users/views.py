@@ -59,19 +59,13 @@ def register_page(request):
             })
             user.email_user(subject=subject, message=message)
             return redirect('index')
-            # '''После регистрации, пользователь автоматически входит в созданный аккаунт'''
-            # username = form.cleaned_data.get('username')
-            # password1 = form.cleaned_data.get('password1')
-
-            # user = authenticate(username=username, password=password1)
-            # login(request, user)
-
-            # return redirect('index')
-    return render(request, 'users/register_page.html', {'form': form, 'profile': form_profile,})
+    context = {
+        'form': form,
+        'profile': form_profile
+    }
+    return render(request, 'users/register_page.html', context)
 
 
 def profile_page(request, userID):
     profile = Profile.objects.get(user=userID)
     return render(request, 'users/profile.html', {'profile': profile})
-
-
