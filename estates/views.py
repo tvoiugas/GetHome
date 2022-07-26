@@ -29,8 +29,8 @@ def about_us(request):
 def estate_list(request):
 	estates = Estate.objects.all()
 	f=EstateFilter(request.GET, queryset=Estate.objects.all())
-	if request.GET:
-		sort=request.GET.get('sort', 'price')
+	sort=request.GET.get('sort')
+	if sort:
 		f = EstateFilter(request.GET, queryset=Estate.objects.all().order_by(sort))
 	context = {
 		'estates': estates,
