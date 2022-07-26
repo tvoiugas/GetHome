@@ -30,18 +30,15 @@ def about_us(request):
 
 
 def estate_list(request):
-    estates = Estate.objects.all()
-    f = EstateFilter(request.GET, queryset=Estate.objects.all())
-    if request.GET:
-        sort = request.GET.get('sort', 'price')
-        f = EstateFilter(
-            request.GET, queryset=Estate.objects.all().order_by(sort))
-    context = {
-        'estates': estates,
-        'f': f,
-    }
-
-    return render(request, 'estates/estate_list.html', context)
+	estates = Estate.objects.all()
+	f=EstateFilter(request.GET, queryset=Estate.objects.all())
+	sort=request.GET.get('sort')
+	if sort:
+		f = EstateFilter(request.GET, queryset=Estate.objects.all().order_by(sort))
+	context = {
+		'estates': estates,
+		'f': f,
+	}
 
 
 @login_required

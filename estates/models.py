@@ -106,6 +106,7 @@ class Estate(models.Model):
     class Meta:
         verbose_name = 'Имущество'
         verbose_name_plural = 'Имущества'
+        ordering = ['-id']
 
     def __str__(self):
         return self.title

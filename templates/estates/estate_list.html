@@ -55,7 +55,6 @@
 							</div>
 							<div class="sorting-container">
 								<form action="" method="">
-									{% csrf_token %}
 									<div id="actual-btn" class="sort">Sort By</div>
 									<ul id="sort-ul" data-condition="off">
 										<!-- <li id="sort-li" class="sorting-button">Default</li>
@@ -70,10 +69,11 @@
 										<label for="area" class="sorting-button" id="sort-li">Area</label>
 										<input id="area" type="submit" class="sorting-button" name="area" style="display: none;" value="area"> -->
 										<select name="sort" id="id_sort_by">
-											<option id="sort-li" value="price" type="submit" class="sorting-button">Default</option>
+											<option id="sort-li" value="-posted_on" type="submit" class="sorting-button">Posted_on</option>
 											<option id="sort-li" value="price" class="sorting-button">Price</option>
 											<option id="sort-li" value="area" class="sorting-button">Area</option>
 										</select>
+										
 										<button type="subimit">Submit</button>
 									</ul>
 								</form>
