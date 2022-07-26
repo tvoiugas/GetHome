@@ -1,18 +1,36 @@
-from django.contrib.auth.models import User 	
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.utils.translation import gettext_lazy as _
 from django import forms
 
-from .models import Profile
+from .models import CustomUser, Profile
 
-class RegistrationForm(UserCreationForm):
-	class Meta:
-		model = User
-		fields = ('username', 'email', 'password1', 'password2')
+
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            'first_name', 'last_name', 'username', 'email',
+            'phone_number', 'birth_date', 'is_staff', 'is_active',
+            'limit', 'is_pro',
+        )
+
+
+class CustomUserChangeForm(UserChangeForm):
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            'first_name', 'last_name', 'username', 'email',
+            'phone_number', 'birth_date', 'is_staff', 'is_active',
+            'limit', 'is_pro',
+        )
 
 
 class ProfileForm(forms.ModelForm):
-	class Meta:
-		model = Profile
-		fields = (
-			'photo', 'birth_date'
-		)
+
+    class Meta:
+        model = Profile
+        fields = (
+            'photo',
+        )
