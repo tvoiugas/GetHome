@@ -31,15 +31,15 @@ def about_us(request):
 
 def estate_list(request):
 	estates = Estate.objects.all()
-	f=EstateFilter(request.GET, queryset=Estate.objects.all())
-	sort=request.GET.get('sort')
+	f=EstateFilter(request.POST, queryset=Estate.objects.all())
+	sort=request.POST.get('sort')
 	if sort:
-		f = EstateFilter(request.GET, queryset=Estate.objects.all().order_by(sort))
+		f = EstateFilter(request.POST, queryset=Estate.objects.all().order_by(sort))
 	context = {
 		'estates': estates,
 		'f': f,
 	}
-
+	return render(request, 'estates/estate_list.html', context)
 
 @login_required
 def estate_create(request):
@@ -135,7 +135,8 @@ def features_create(request):
             return HTTPResponseHXRedirect(reverse('listings'))
 
     context = {
-        'formset': formset
+        'formset': formset,
+		
     }
 
     return render(request, 'estates/features_create.html', context)

@@ -1,6 +1,5 @@
 from django import forms
 from django.forms import inlineformset_factory
-
 from estates.models import Estate, Details, Feature, Tag
 
 
@@ -41,3 +40,5 @@ class TagForm(forms.ModelForm):
         fields = (
             'name',
         )
+
+
