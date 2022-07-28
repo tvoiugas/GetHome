@@ -41,4 +41,8 @@ class TagForm(forms.ModelForm):
             'name',
         )
 
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = HouseImage
+        fields = ('file',)
 
