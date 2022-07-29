@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, redirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
@@ -9,7 +10,7 @@ from django.contrib.admin.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 
-from .models import Profile
+from .models import CustomUser, Profile
 from .forms import CustomUserCreationForm, ProfileForm
 
 
@@ -53,25 +54,35 @@ def register_page(request):
             current_site = get_current_site(request)
             subject = 'Активация'
             message = render_to_string('users/activation_page.html', {
-                'user': user, 'domain': current_site,
+                'user': user, 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user)
             })
             user.email_user(subject=subject, message=message)
             return redirect('index')
-            # '''После регистрации, пользователь автоматически входит в созданный аккаунт'''
-            # username = form.cleaned_data.get('username')
-            # password1 = form.cleaned_data.get('password1')
+    context = {
+        'form': form,
+        'profile': form_profile
+    }
+    return render(request, 'users/register_page.html', context)
 
-            # user = authenticate(username=username, password=password1)
-            # login(request, user)
 
-            # return redirect('index')
-    return render(request, 'users/register_page.html', {'form': form, 'profile': form_profile,})
+def account_activation(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = CustomUser.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+        user = None
+
+    if user and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return redirect('profile', userID=user.id)
+    else:
+        return render(request, 'users/activation_failed.html')
 
 
 def profile_page(request, userID):
     profile = Profile.objects.get(user=userID)
     return render(request, 'users/profile.html', {'profile': profile})
-
-

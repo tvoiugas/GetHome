@@ -13,23 +13,35 @@
 		</div>
 		<div class="search">
 			<div class="container">
+			<form  action="" method="POST">
+				{% csrf_token %}
 				<div class="row">
 					<div class="col">
 						<div class="search-container">
-							<form class="search-form" action="" method="POST">
-								{% csrf_token %}
+							<div class="search-form">
 								<input name="type" type="text" class="listing-input" placeholder="Property type">
 								<input name="no-rooms" type="text" class="listing-input" placeholder="No rooms">
 								<input name="location" type="text" class="listing-input" placeholder="Location">
-								<button class="listing-btn" type="submit" name="submit">SUBMIT LISTING</button>
-							</form>
-							<div class="search-buttons">
+								<button class="listing-btn" type="submit" name="submit">ПОИСК</button>
+							</div>
+							{% comment %} <div class="search-buttons">
 								<div class="search-button" style="--clr: #55407d;"><a href="#">Detailed Search</a></div>
 								<div class="search-button" style="--clr: #adc867;"><a href="#">Show Map</a></div>
-							</div>
+							</div> {% endcomment %}
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col">
+						<div class="listing-tags">
+								<label for="id_tags"></label>  
+      							{% render_field f.form.tags class="d-flex flex-row align-items-start justify-content-start flex-wrap" %}
+	
+						</div>
+					</div>
+				</div>
+			</form>
+
 			</div>
 		</div>
 		<div class="listings">
@@ -37,24 +49,10 @@
 				<div class="row">
 					<div class="col">
 						<div class="sorting">
-							<div class="listing-tags">
-								<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
-									<li><a href="#">2 beds<span>x</span></a></li>
-									<li><a href="#">2 baths<span>x</span></a></li>
-									<li><a href="#">garage<span>x</span></a></li>
-									<li><a href="#">swimming pool<span>x</span></a></li>
-									<li><a href="#">patio<span>x</span></a></li>
-									<li><a href="#">heated floors<span>x</span></a></li>
-									<li><a href="#">garden<span>x</span></a></li>
-								</ul>
-								<form action="">
-									<label for="id_tags">теги</label>  
-      								{% render_field f.form.tags %}
-     								<button>поиск</button>
-								</form>
-							</div>
+							
 							<div class="sorting-container">
-								<form action="" method="">
+
+								<form action="" method="POST">
 									{% csrf_token %}
 									<div id="actual-btn" class="sort">Sort By</div>
 									<ul id="sort-ul" data-condition="off">
@@ -70,10 +68,11 @@
 										<label for="area" class="sorting-button" id="sort-li">Area</label>
 										<input id="area" type="submit" class="sorting-button" name="area" style="display: none;" value="area"> -->
 										<select name="sort" id="id_sort_by">
-											<option id="sort-li" value="price" type="submit" class="sorting-button">Default</option>
+											<option id="sort-li" value="-posted_on" type="submit" class="sorting-button">Posted_on</option>
 											<option id="sort-li" value="price" class="sorting-button">Price</option>
 											<option id="sort-li" value="area" class="sorting-button">Area</option>
 										</select>
+										
 										<button type="subimit">Submit</button>
 									</ul>
 								</form>
