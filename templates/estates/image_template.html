@@ -1,0 +1,4 @@
+<div hx-target="this" hx-swap="outerHTML">
+
+    <img src="{{image.file.url}}" alt=""><button hx-get="{% url 'image_delete' image_id=image.pk %}">Удалить</button>    
+</div>

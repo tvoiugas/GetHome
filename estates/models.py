@@ -87,8 +87,7 @@ class Estate(models.Model):
         related_name='estates', verbose_name='Автор')
     price = models.IntegerField(_('Цена'))
     area = models.IntegerField(_('Площадь'))
-    photo = models.ImageField(
-        _('Изображение'), upload_to='estate_photos/', max_length=255)
+    
     video = models.FileField(_('Видео'), upload_to='estate_videos',
                              null=True, blank=True,
                              validators=[FileExtensionValidator(
@@ -129,7 +128,7 @@ class Details(models.Model):
     estate = models.OneToOneField(
         Estate, on_delete=models.CASCADE,
         related_name='details', verbose_name='Имущество')
-
+    
     class Meta:
         verbose_name = 'Детали'
         verbose_name_plural = 'Детали'
@@ -166,5 +165,7 @@ class Feature(models.Model):
     def __str__(self):
         return self.estate.title
 
-
-
+    
+class HouseImage(models.Model):
+    file = models.ImageField(upload_to='houses')
+    house = models.ForeignKey(Estate, on_delete=models.CASCADE)

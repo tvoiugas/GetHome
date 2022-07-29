@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Estate, Details, Feature, Tag
+from .models import Estate, Details, Feature, Tag, HouseImage
 
 
 class AdminDetail(admin.TabularInline):
@@ -20,3 +20,4 @@ admin.site.register(Estate, AdminEstate)
 admin.site.register(Details)
 admin.site.register(Feature)
 admin.site.register(Tag)
+admin.site.register(HouseImage)

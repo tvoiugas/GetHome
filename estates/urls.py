@@ -9,7 +9,9 @@ from .views import (
     estate_detail,
     estate_delete,
     estate_list,
-    estate_update
+    estate_update,
+    image_create, 
+    image_delete
 )
 
 urlpatterns = [
@@ -25,4 +27,6 @@ urlpatterns = [
          estate_delete, name="listing_delete"),
     path('listing/<int:listing_id>/edit/',
          estate_update, name="listing_update"),
+    path('<house_id>/images/new', image_create, name='image_create'),  
+    path('images/<image_id>/delete', image_delete, name='image_delete')
 ]

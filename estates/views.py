@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
-from .forms import EstateForm, DetailsForm, FeaturesForm, FeaturesFormSet
+from .forms import EstateForm, DetailsForm, FeaturesForm, FeaturesFormSet, ImageForm, HouseImage
 from .models import Estate, Details, Feature
 from .filters import EstateFilter
 
@@ -106,7 +106,7 @@ def details_create(request):
 
 def features_create(request):
     formset = FeaturesFormSet()
-
+    estate = get_object_or_404(Estate, pk=estate_id)
     if request.method == "POST":
         formset = FeaturesFormSet(request.POST, request.FILES)
         if formset.is_valid():
@@ -120,7 +120,7 @@ def features_create(request):
                 photo='/estate_photos/' + request.session['photo'],
                 video=request.session['video'],
                 author=request.user
-            )
+                )
             formset = FeaturesFormSet(request.POST, instance=estate)
             detail = Details.objects.create(
                 bathrooms=request.session['bathrooms'],
@@ -130,16 +130,21 @@ def features_create(request):
                 floor_on=request.session['floor_on'],
                 estate=estate,
             )
+            image_form = ImageForm()
+                image_context = {'image_form': image_form, 'estate_id': estate.pk}
+                return render(request, 'estate/partials/image_create.html', image_context)
+            
             for form in formset:
                 form.save()
             return HTTPResponseHXRedirect(reverse('listings'))
-
+        
     context = {
         'formset': formset,
 		
     }
-
+    
     return render(request, 'estates/features_create.html', context)
+    
 
 
 def estate_detail(request, listing_id):
@@ -177,3 +182,25 @@ def estate_update(request, listing_id):
     }
 
     return render(request, 'estates/estate_update.html', context)
+
+
+@login_required
+def image_create(request, house_id):
+    house = get_object_or_404(Estate, pk=house_id)
+    form = ImageForm()
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            img = form.save(commit=False)
+            img.house = house
+            img.save()
+            return render(request, 'estates/image_template.html', {'image': img})
+    context = {'image_form': form, 'house_id': house.pk}
+    return render(request, 'estates/image_form.html', context)
+
+
+@login_required
+def image_delete(request, image_id):
+    img = get_object_or_404(HouseImage, pk=image_id)
+    img.delete()
+    return HttpResponse(reverse('listings'))
