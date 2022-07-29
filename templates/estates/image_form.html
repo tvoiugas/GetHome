@@ -1,0 +1,13 @@
+{% load widget_tweaks %}
+<form  hx-encoding='multipart/form-data' hx-post="{% url 'image_create' estate_id=estate_id %}" hx-target="this" hx-swap="outerHTML">
+    {% csrf_token %}
+    {{image_form.as_p}}
+    <button>Загрузить</button>
+    <button onclick="deletePrevForm(event)">Отмена</button>  
+</form>
+<script>
+    deletePrevForm = (e) => {
+        e.preventDefault();
+        e.target.parentElement.remove();
+    }
+</script>
