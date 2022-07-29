@@ -1,0 +1,8 @@
+{% load widget_tweaks %}
+<ul>
+    <h5>Upload images</h5>
+    <a href="{% url 'listings' %}">Завершить редактирование объявления</a>
+    <button hx-get="{% url 'image_create' estate_id=estate_id %}" hx-swap="afterend" hx-target="this">добавить фото</button>
+    
+    {% include 'estates/image_form.html' %}
+</ul>
