@@ -6,7 +6,8 @@ from django.urls import reverse
 from .forms import EstateForm, DetailsForm, FeaturesForm, ImageForm, HouseImage
 from .models import Estate, Details, Feature
 from .filters import EstateFilter
-
+from .decorators import check_author
+from django.contrib import messages
 
 class HTTPResponseHXRedirect(HttpResponseRedirect):
     def __init__(self, *args, **kwargs):
@@ -191,6 +192,7 @@ def estate_delete(request, listing_id):
 
 
 @login_required
+@check_author
 def estate_update(request, listing_id):
     estate = get_object_or_404(Estate, id=listing_id)
     form = EstateForm(request.POST or None, instance=estate)
@@ -198,19 +200,16 @@ def estate_update(request, listing_id):
         if form.is_valid:
             form.save()
             return redirect('listing_list')
-
+    
     context = {
         'form': form
     }
 
     return render(request, 'estates/estate_update.html', context)
-
-
-
-
-
+    
 @login_required
 def image_delete(request, image_id):
     img = get_object_or_404(HouseImage, pk=image_id)
     img.delete()
     return HttpResponse('')
+
