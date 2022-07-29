@@ -19,9 +19,9 @@
 					<div class="col">
 						<div class="search-container">
 							<div class="search-form">
-								<input name="type" type="text" class="listing-input" placeholder="Property type">
-								<input name="no-rooms" type="text" class="listing-input" placeholder="No rooms">
-								<input name="location" type="text" class="listing-input" placeholder="Location">
+								{% render_field f.form.estate_type class="listing-input" placeholder="Property type" %}
+								{% render_field f.form.bedrooms class="listing-input" type='text' %}
+								{% render_field f.form.location class="listing-input" type='text' %}
 								<button class="listing-btn" type="submit" name="submit">ПОИСК</button>
 							</div>
 							{% comment %} <div class="search-buttons">
