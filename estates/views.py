@@ -206,7 +206,6 @@ def estate_update(request, listing_id):
     }
 
     return render(request, 'estates/estate_update.html', context)
-
 @login_required
 def image_delete(request, image_id):
     img = get_object_or_404(HouseImage, pk=image_id)
