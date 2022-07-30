@@ -145,6 +145,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+<<<<<<< HEAD
+=======
+STATIC_ROOT = "/var/www/example.com/static/"
+>>>>>>> 1125bae (просто карта в listings)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

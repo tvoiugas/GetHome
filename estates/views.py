@@ -2,11 +2,21 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+<<<<<<< HEAD
 
 from .forms import EstateForm, DetailsForm, FeaturesForm, FeaturesFormSet
 from .models import Estate, Details, Feature
 from .filters import EstateFilter
 
+=======
+import folium
+from . import getroute
+from .forms import EstateForm, DetailsForm, FeaturesForm, FeaturesFormSet
+from .models import Estate, Details, Feature
+from .filters import EstateFilter
+from .decorators import check_author
+from django.contrib import messages
+>>>>>>> 1125bae (просто карта в listings)
 
 class HTTPResponseHXRedirect(HttpResponseRedirect):
     def __init__(self, *args, **kwargs):
@@ -164,6 +174,10 @@ def estate_delete(request, listing_id):
 
 
 @login_required
+<<<<<<< HEAD
+=======
+@check_author
+>>>>>>> 1125bae (просто карта в listings)
 def estate_update(request, listing_id):
     estate = get_object_or_404(Estate, id=listing_id)
     form = EstateForm(request.POST or None, instance=estate)
@@ -171,9 +185,34 @@ def estate_update(request, listing_id):
         if form.is_valid:
             form.save()
             return redirect('listing_list')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 1125bae (просто карта в listings)
     context = {
         'form': form
     }
 
     return render(request, 'estates/estate_update.html', context)
+<<<<<<< HEAD
+=======
+
+def showmap(request):
+    return render(request,'estates/showmap.html')
+
+def showroute(request,lat1,long1,lat2,long2):
+    figure = folium.Figure()
+    lat1,long1,lat2,long2=float(lat1),float(long1),float(lat2),float(long2)
+    route=getroute.get_route(long1,lat1,long2,lat2)
+    m = folium.Map(location=[(route['start_point'][0]),
+                                 (route['start_point'][1])], 
+                       zoom_start=10)
+    m.add_to(figure)
+    folium.PolyLine(route['route'],weight=8,color='blue',opacity=0.6).add_to(m)
+    folium.Marker(location=route['start_point'],icon=folium.Icon(icon='play', color='green')).add_to(m)
+    folium.Marker(location=route['end_point'],icon=folium.Icon(icon='stop', color='red')).add_to(m)
+    figure.render()
+    context={'map':figure}
+    return render(request,'estates/showroute.html',context)
+>>>>>>> 1125bae (просто карта в listings)
