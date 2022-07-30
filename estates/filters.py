@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import django_filters
 from .models import Tag
 
@@ -6,7 +5,6 @@ from .models import Tag
 class EstateFilter(django_filters.FilterSet):
     tags = django_filters.ModelMultipleChoiceFilter(
         label='тег', field_name="tags", queryset=Tag.objects.all(), widget=django_filters.widgets.LinkWidget)
-=======
 from random import choice, choices
 import django_filters
 from .models import Tag, Estate
@@ -75,4 +73,4 @@ class EstateFilter(django_filters.FilterSet):
     class Meta:
         model = Tag
         fields = []
->>>>>>> 1125bae (просто карта в listings)
+

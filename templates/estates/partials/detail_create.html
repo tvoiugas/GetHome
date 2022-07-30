@@ -1,0 +1,7 @@
+
+<form action="" method="post" hx-post="{% url 'detail_create' house_id=house_id %}" hx-target="this" hx-swap="outerHTML">
+    <h5>продолжайте заполнять поля </h5>
+    {% csrf_token %}
+    {{detail_form.as_p}}
+    <button type="submit">Далее</button>
+</form>
