@@ -85,12 +85,21 @@
 										<div class="col-lg-4">
 											<div class="listing">
 												<div class="listing-image-container">
-													<a href="{% url 'listing_detail' estate.id %}"><img src="{{estate.photo.url}}"></a>
-													<div class="tag-section">
-														<a href="#" class="tag-item" style="--clr: #adc867;">{{estate.get_estate_type_display|upper}}</a>
-														<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
-													</div>
+    												
+        											{% if estate.houseimage_set.first %}
+													 <a href="{% url 'listing_detail' estate.id %}" ><img src="{{estate.houseimage_set.first.file.url}}"></a>
+       												 
+        												 {% else %}
+													 <a href="{% url 'listing_detail' estate.id %}" ><img src="{% static 'images/house-icon.svg' %}" alt=""></a>	 
+       												 
+       												{% endif  %}
+													  
+    												<div class="tag-section">
+        												<a href="#" class="tag-item" style="--clr: #adc867;">{{estate.get_estate_type_display|upper}}</a>
+        												<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
+    												</div>
 												</div>
+>
 												<div class="tag-price">$ {{estate.price}}</div>
 												<div class="prop-location">
 													<iframe src="{% static 'images/icons/geo.svg' %}" width="20px" height="20px"></iframe>
