@@ -82,7 +82,7 @@ def account_activation(request, uidb64, token):
     else:
         return render(request, 'users/activation_failed.html')
 
-
-def profile_page(request, userID):
-    profile = Profile.objects.get(user=userID)
+@login_required
+def profile_page(request):
+    profile = Profile.objects.get(user= request.user)
     return render(request, 'users/profile.html', {'profile': profile})

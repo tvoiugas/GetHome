@@ -9,7 +9,7 @@ class EstateForm(forms.ModelForm):
         fields = (
             'title', 'price', 'area',
             'estate_type', 'location',
-            'video', 'description'
+            'video', 'description','tags'
         )
 
 

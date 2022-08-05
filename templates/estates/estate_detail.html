@@ -4,34 +4,10 @@
 {% block title %}{{estate.title}}{% endblock title %}
 
 {% block content %}
-
-<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
-	<h2>Listings</h2>
-</div>
-<div class="row mt-3">
-    	<nav aria-label="Page navigation example">
-      		<ul class="pagination justify-content-center">
-       			<li class="page-item"><a class="page-link" href="{% url 'listings' %}">Back to listings</a></li>
-        	</ul>
-    	</nav>
-</div>
-	<div class="row mt-4">
-		<img src="{{estate.photo.url}}">
-		<br><strong>{{estate.title}}</strong></br>
-		<br>Описание: {{estate.description}}</br>
-		<br>Дата объявления: {{estate.posted_on}}</br>
-		<br>Локация: {{estate.get_location_display}}</br>
-		<br>Цена: {{estate.price}} $</br>
-		<br>Жилая площадь: {{estate.area}} m²</br>
-		<br>кол-во комнат: {{estate.details.bedrooms}}</br>
-		<br>кол-во caн-узлов: {{estate.details.bathrooms}}</br>
-		<br>кол-во гаражей: {{estate.details.garages}}</br>
-		<br>кол-во этажей: {{estate.details.floors}}</br>
-		<br>этаж: {{estate.details.floor_on}}</br>
-		{% for feature in estate.features.all %}
-			<br>Особенности: {{feature.get_kind_display}}</br>
-		{% endfor %}
-		<br>Автор: {{estate.author}}</br>
+<div class="container">
+	<div class="paralax-background" style="background-image: url({% static 'images/flat1.jpg' %})">
+		<h2>Listings</h2>
+	</div> 
 	<div class="row mt-3">
     	<nav aria-label="Page navigation example">
       		<ul class="pagination justify-content-center">
@@ -39,5 +15,111 @@
         	</ul>
     	</nav>
 	</div>
-
+	<div class="row mt-3">
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{estate.houseimage_set.first.file.url}}" class="d-block w-100" alt="...">
+                    </div>
+                    {% for i in estate.houseimage_set.all %}
+                        <div class="carousel-item">
+                            <img src="{{i.file.url}}" class="d-block w-100" alt="...">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Предыдущий</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Следующий</span>
+                </button>
+        </div>
+		<div class="card-descr border-light mb-3">
+            <div class="row g-0">
+                <div class="descriptions">
+                    <ul class="list-group list-group-flush bg-light">
+                        <li class="list-group-item">
+                            <h2 style="font-weight:bold;">{{estate.price}} $</h2>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="table-chars">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td><strong>Title:</strong></td>
+						<td>{{estate.title}}</td>
+					</tr>
+					<tr>
+						<td><strong>Description:</strong></td>
+						<td>{{estate.description}}</td>
+					</tr>
+					<tr>
+						<td><strong>Posted on:</strong></td>
+						<td>{{estate.posted_on}}</td>
+					</tr>
+					<tr>
+						<td><strong>Location:</strong></td>
+						<td>г. {{estate.get_location_display}}</td>
+					</tr>
+					<tr>
+						<td><strong>Area:</strong></td>
+						<td>{{estate.area}} m²</td>
+					</tr>
+					<tr>
+						<td><strong>Badrooms:</strong></td>
+						<td>{{estate.details.bedrooms}}</td>
+					</tr>
+					<tr>
+						<td><strong>Bathrooms:</strong></td>
+						<td>{{estate.details.bathrooms}}</td>
+					</tr>
+					<tr>
+						{% if estate.details.garages%}
+						<td><strong>Garages:</strong></td>
+						<td>{{estate.details.garages}}</td>
+						{% endif%}
+					</tr>
+					<tr>
+						{% if estate.details.floor_on%}
+							<td><strong>Floor on:</strong></td>
+							<td>{{estate.details.floor_on}}</td>
+						{% endif%}
+					</tr>
+					<tr>
+						{% if estate.details.floors %}
+							<td><strong>Floors:<strong></td>
+							<td>{{estate.details.floors }}</td>
+						{% endif%}
+					</tr>
+					<tr>
+						<td><strong>Дополнительно:</strong></td>
+						{% for tag in f.form.tags.all %}
+            				<td>{{tag}}</td>
+        				{% endfor %}
+					</tr>
+					<tr>
+						<td><strong>Author:</strong></td>
+						<td>{{estate.author}}</td>
+					</tr>
+				</tbody>
+			</table>
+				<a href="{% url 'listing_update' estate.id %}" class="btn btn-outline-success logout-btn"> UPDATE</a>
+				<a href="{% url 'listing_delete' estate.id %}" class="btn btn-outline-danger logout-btn"> DELETE</a>
+				
+	<div class="row mt-3">
+    	<nav aria-label="Page navigation example">
+      		<ul class="pagination justify-content-center">
+       			<li class="page-item"><a class="page-link" href="{% url 'listings' %}">Back to listings</a></li>
+        	</ul>
+    	</nav>
+	</div>
+</div>
 {% endblock content %}
