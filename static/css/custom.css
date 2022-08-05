@@ -356,3 +356,7 @@ body {
 .footer_content .col-xl-3.col-lg-6.footer_col .footer-submit:hover {
 	background-color: #adc867;
 }
+
+div.table-chars {
+    width: 40em;
+}

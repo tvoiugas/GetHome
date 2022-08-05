@@ -13,8 +13,7 @@
 		</div>
 		<div class="search">
 			<div class="container">
-			<form  action="" method="POST">
-				{% csrf_token %}
+			<form  action="" method="GET">
 				<div class="row">
 					<div class="col">
 						<div class="search-container">
@@ -31,15 +30,29 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row justify-content-between d-flex">
 					<div class="col">
 						<div class="listing-tags">
-								<label for="id_tags"></label>  
-      							{% render_field f.form.tags class="d-flex flex-row align-items-start justify-content-start flex-wrap" %}
-	
+							<label for="id_tags"></label>  
+      						{% render_field f.form.tags class="d-flex flex-row align-items-start justify-content-start flex-wrap" %}
 						</div>
 					</div>
-				</div>
+					<div class="col"> 
+						<div class="sorting ">
+							<div class="sorting-container">
+								<div id="actual-btn" class="sort">Sort By</div>
+									<ul id="sort-ul" data-condition="off">
+										<select name="sort" id="id_sort_by">
+											<option id="sort-li" value="-posted_on" type="submit" class="sorting-button">Posted_on</option>
+											<option id="sort-li" value="price" class="sorting-button">Price</option>
+											<option id="sort-li" value="area" class="sorting-button">Area</option>
+										</select>
+									</ul>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
 			</form>
 
 			</div>
@@ -48,39 +61,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<div class="sorting">
-							
-							<div class="sorting-container">
-
-								<form action="" method="POST">
-									{% csrf_token %}
-									<div id="actual-btn" class="sort">Sort By</div>
-									<ul id="sort-ul" data-condition="off">
-										<!-- <li id="sort-li" class="sorting-button">Default</li>
-										<hr>
-										<li id="sort-li" class="sorting-button">Price</li>
-										<hr>
-										<li id="sort-li" class="sorting-button">Area</li> -->
-										<!-- <label for="default" class="sorting-button" id="sort-li">Default</label>
-										<input id="default" type="submit" class="sorting-button" name="default" style="display: none;" value="default">
-										<label for="price" class="sorting-button" id="sort-li">Price</label>
-										<input id="price" type="submit" class="sorting-button" name="price" style="display: none;" value="price">
-										<label for="area" class="sorting-button" id="sort-li">Area</label>
-										<input id="area" type="submit" class="sorting-button" name="area" style="display: none;" value="area"> -->
-										<select name="sort" id="id_sort_by">
-											<option id="sort-li" value="-posted_on" type="submit" class="sorting-button">Posted_on</option>
-											<option id="sort-li" value="price" class="sorting-button">Price</option>
-											<option id="sort-li" value="area" class="sorting-button">Area</option>
-										</select>
-										
-										<button type="subimit">Submit</button>
-									</ul>
-								</form>
-							</div>
-						</div>
 						<div class="listing-container">
 							<div class="listing-box">
-								<div class="row listings-row">
+								<div class="row listings-row mt-5">
 									{% for estate in f.qs %}
 										<div class="col-lg-4">
 											<div class="listing">
@@ -110,7 +93,9 @@
 														<li class="listing-item"><img src="{% static 'images/icons/area.png' %}"> {{estate.area}} sq ft</li>
 														<li class="listing-item"><img src="{% static 'images/icons/bath.webp' %}"> {{estate.details.bathrooms}}</li>
 														<li class="listing-item"><img src="{% static 'images/icons/bed.webp' %}"> {{estate.details.bedrooms}}</li>
-														<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}">{{estate.details.garages}}</li>
+														{% if estate.details.garages %}
+															<li class="listing-item"><img src="{% static 'images/icons/garage.webp' %}">{{estate.details.garages}}</li>
+														{% endif %}
 													</ul>
 												</div>
 											</div>
@@ -126,4 +111,10 @@
 	</div>
 
 {% block javascript %}<script src="{% static 'estates/js/listings.js' %}"></script>{% endblock javascript %}
-{% endblock content %}
+{% endblock content %}	
+							
+							
+
+								
+									
+									

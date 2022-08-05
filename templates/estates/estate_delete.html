@@ -5,13 +5,15 @@
 
 
 {% block content %}
-
-    <div class="alert">
+<div class="container">
+	<div class="alert mt-5">
     	<h1>Are you sure you wanna delete this listing({{estate.title}})?</h1>
-    </div>
-    <div class="actions">
-   		<button class="" type="submit">Yes, delete</button>
-		<a href="{% url 'listings' %}"></a>
 	</div>
-
+	<div class="actions" >
+		<form action="" method="POST" encytype="multipart/form-data">
+			{% csrf_token%} {{form.as_p}}
+   			<button class="btn btn-outline-danger logout-btn" type="submit">Yes, delete</button>
+		</form>
+	</div>
+</div>
 {% endblock content %}
