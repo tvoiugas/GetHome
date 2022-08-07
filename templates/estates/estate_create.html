@@ -15,7 +15,8 @@
 					<div class="col">
 						<div id="form-container" class="form-container">
 						
-							<form method="POST" hx-encoding='multipart/form-data' action="" id="listing-form" class="estate-form" hx-post="{% url 'listing_create' %}" hx-target="this" hx-swap="outerHTML">
+							<form method="POST" hx-encoding='multipart/form-data' action="" id="listing-form" class="estate-form" 
+								hx-post="{% url 'listing_create' %}" hx-target="this" hx-swap="outerHTML">
 								{% csrf_token %}
 								<div class="row form-row">
 									<div class="col-lg-4">
@@ -25,6 +26,8 @@
 										<div class="listing-text">{% render_field form.price %}</div>
 										<label for="id_area">Set area</label>
 										<div class="listing-text">{% render_field form.area %}</div>
+										<label for="id_tags">Tags</label>
+										<div class="listing-text">{% render_field form.tags %}</div>
 									</div>
 									<div class="col-lg-4">
 										<label for="id_estate_type">Type</label>

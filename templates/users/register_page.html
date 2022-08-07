@@ -17,9 +17,9 @@
 							  {% if form.errors %}
 							  	<p>{{form.errors}}</p>
 							  {% endif %}
-							  {% if profile.errors %}
+							  {% comment %} {% if profile.errors %}
 							  	<p>{{profile.errors}}</p>
-							  {% endif %}
+							  {% endif %} {% endcomment %}
 							  <label for="first_name"><b>First Name</b></label>
 							  {{form.first_name}}
 							  <label for="last_name"><b>Last Name</b></label>

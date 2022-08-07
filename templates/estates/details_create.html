@@ -1,5 +1,6 @@
 {% load widget_tweaks %}
-<form id="details-form" action="" class="estate-form"  method="POST" hx-post="{% url 'details_create' estate_id=estate_id %}" hx-target="this" hx-swap="outerHTML">
+<form id="details-form" action="" class="estate-form"  method="POST" 
+	hx-post="{% url 'details_create' estate_id=estate_id %}" hx-target="this" hx-swap="outerHTML">
 	{% csrf_token %}
 	<div class="row form-row">
 		<div class="col-sm-4">
