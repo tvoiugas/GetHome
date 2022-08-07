@@ -47,14 +47,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         super(CustomUser, self).save(*args, **kwargs)
 
 
-class Profile(models.Model):
-    photo = models.ImageField(upload_to='users', null=True, blank=True)
-    user = models.OneToOneField(
-        CustomUser, on_delete=models.CASCADE, related_name='profile')
+# class Profile(models.Model):
+#     photo = models.ImageField(upload_to='users', null=True, blank=True)
+#     user = models.OneToOneField(
+#         CustomUser, on_delete=models.CASCADE, related_name='profile')
 
-    class Meta:
-        verbose_name = 'Профиль'
-        verbose_name_plural = 'Профили'
+#     class Meta:
+#         verbose_name = 'Профиль'
+#         verbose_name_plural = 'Профили'
 
-    def __str__(self):
-        return self.user.username
+#     def __str__(self):
+#         return self.user.username
