@@ -28,6 +28,7 @@
 /* Add padding to containers */
 .container {
   padding: 16px;
+  min-height: 100vh;
 }
 
 /* Full-width input fields */
