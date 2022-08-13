@@ -73,18 +73,33 @@ class Estate(models.Model):
     ]
 
     title = models.CharField(_('Название'), max_length=256)
-    estate_type = models.CharField( _('Вид собственности'), max_length=1, choices=ESTATE_TYPE_CHOICES, null=False)
+    estate_type = models.CharField(
+        _('Вид собственности'), max_length=1,
+        choices=ESTATE_TYPE_CHOICES, null=False)
     slug = models.SlugField(max_length=256, blank=True)
     description = models.TextField(_('Описание'))
-    location = models.CharField(_('Местонахождение'), max_length=5, choices=TOWNS_CHOICES)
+    location = models.CharField(
+        _('Местонахождение'), max_length=5, choices=TOWNS_CHOICES)
     posted_on = models.DateField(_('Опубликовано'), auto_now=True)
-    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=False, related_name='estates', verbose_name='Автор')
+    author = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE,
+        null=False,
+        related_name='estates', verbose_name='Автор')
     price = models.IntegerField(_('Цена'))
     area = models.IntegerField(_('Площадь'))
-    video = models.FileField(_('Видео'), upload_to='estate_videos', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
-    tags = models.ManyToManyField(Tag, verbose_name="теги", related_name='estate')
+    
+    video = models.FileField(_('Видео'), upload_to='estate_videos',
+                             null=True, blank=True,
+                             validators=[FileExtensionValidator(
+                                allowed_extensions=[
+                                    'MOV', 'avi', 'mp4', 'webm', 'mkv']
+                                )])
+    tags = models.ManyToManyField(
+        Tag, verbose_name="теги", related_name='estate')
+
     latitude = models.FloatField(_('Координаты восточной широты'), null=True)
     longitude = models.FloatField(_('Координаты северной долготы'), null=True)
+
     objects = EarthDistanceQuerySet.as_manager()
 
     class Meta:
@@ -101,13 +116,19 @@ class Estate(models.Model):
 
 
 class Details(models.Model):
-    bathrooms = models.IntegerField(_('Ванные комнаты'), null=True, blank=True, default=1)
-    bedrooms = models.IntegerField(_('Спальни'), null=True, blank=True, default=1)
-    garages = models.IntegerField(_('Гаражи'), null=True, blank=True, default=0)
-    floors = models.IntegerField(_('Количество этажей'), null=True, blank=True, default=0)
+    bathrooms = models.IntegerField(
+        _('Ванные комнаты'), null=True, blank=True, default=1)
+    bedrooms = models.IntegerField(
+        _('Спальни'), null=True, blank=True, default=1)
+    garages = models.IntegerField(
+        _('Гаражи'), null=True, blank=True, default=0)
+    floors = models.IntegerField(
+        _('Количество этажей'), null=True, blank=True, default=0)
     floor_on = models.IntegerField(_('Этаж'), null=True, blank=True)
-    estate = models.OneToOneField(Estate, on_delete=models.CASCADE, related_name='details', verbose_name='Имущество')
-
+    estate = models.OneToOneField(
+        Estate, on_delete=models.CASCADE,
+        related_name='details', verbose_name='Имущество')
+    
     class Meta:
         verbose_name = 'Детали'
         verbose_name_plural = 'Детали'
@@ -131,8 +152,11 @@ class Feature(models.Model):
         ('SP', 'Бассейн'),
     ]
 
-    kind = models.CharField(_('Тип'), max_length=3, choices=KIND_CHOICES, null=True)
-    estate = models.ForeignKey(Estate, verbose_name='Детали',related_name='features', on_delete=models.CASCADE, default=0)
+    kind = models.CharField(_('Тип'), max_length=3,
+                            choices=KIND_CHOICES, null=True)
+    estate = models.ForeignKey(Estate, verbose_name='Детали',
+                               related_name='features',
+                               on_delete=models.CASCADE, default=0)
 
     class Meta:
         verbose_name = 'Особенности'
@@ -141,7 +165,7 @@ class Feature(models.Model):
     def __str__(self):
         return self.estate.title
 
-class EstateImage(models.Model):
-    file = models.ImageField(upload_to='estate')
-    estate = models.ForeignKey(Estate, on_delete=models.CASCADE)
-
+    
+class HouseImage(models.Model):
+    file = models.ImageField(upload_to='houses')
+    house = models.ForeignKey(Estate, on_delete=models.CASCADE)

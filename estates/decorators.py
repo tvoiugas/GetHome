@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
 from .models import Estate
 from functools import wraps
 
@@ -14,5 +15,5 @@ def check_author(view_func):
 
         else:
             html="<html><body>Вы не автор объявления.</body></html>"
-            return HttpResponse(html)
+            return redirect('listings')
     return wrapper

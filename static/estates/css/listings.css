@@ -82,7 +82,7 @@
 
 .sorting {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 }
 
 .listing-tags ul {
