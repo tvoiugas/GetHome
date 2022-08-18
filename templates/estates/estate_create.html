@@ -48,12 +48,17 @@
 											<div class="listing-media">{% render_field form.video %}</div>
 										</label>
 									</div>
+									<div class="col-lg-4 mt-2 ">
+									{% render_field form.latitude %}
+									{% render_field form.longitude %}	
+										<div id="createmap">
+										</div>
+									</div>
 									<div class="col-lg-4 textarea-col">
 										<label for="id_description">Description</label>
 										<div class="listing-textarea">{% render_field form.description %}</div>
 									</div>
 								</div>
-
 								<div class="form-submit">
 					
 									<button id="submit-btn" type="submit" >NEXT</button>
@@ -70,3 +75,27 @@
  	{% comment %} <script src="{% static 'estates/js/listing_add.js' %}"></script> {% endcomment %}
 
 {% endblock content %}
+{% block javascript %}
+	<script>
+        let mapOptions = {
+            center: [42.8079, 73.8484], // KaraBalta
+            zoom: 13
+        }
+        let createMap = new L.map('createmap', mapOptions);
+        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        createMap.addLayer(layer);
+        
+        let marker = L.marker([0, 0])
+        createMap.on('click', (e) => {
+            const {lat, lng} = e.latlng;
+            marker.setLatLng([lat, lng]);
+            marker.addTo(createMap);
+            // эти id зависят от названия полей в форме
+            document.getElementById('id_latitude').value = lat;
+            document.getElementById('id_longitude').value = lng;
+        })
+        </script>
+{% endblock javascript %}
+				
+				
+										

@@ -59,7 +59,7 @@ TOWNS_CHOICES_FILTER = [
 
 class EstateFilter(django_filters.FilterSet):
     tags = django_filters.ModelMultipleChoiceFilter(
-        label='тег', field_name="tags", queryset=Tag.objects.all(), widget=django_filters.widgets.LinkWidget)
+        label='тег', field_name="tags", queryset=Tag.objects.all())
     estate_type = django_filters.ChoiceFilter(choices=Estate.ESTATE_TYPE_CHOICES, empty_label='estate')
     location = django_filters.ChoiceFilter(choices=Estate.TOWNS_CHOICES, empty_label='Uncategorized')
     bedrooms = django_filters.NumberFilter(field_name='details__bedrooms')

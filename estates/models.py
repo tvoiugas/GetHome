@@ -4,7 +4,7 @@ from django.utils.translation import gettext as _
 from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
 from django.utils.text import slugify
-from django_earthdistance.models import EarthDistanceQuerySet
+
 
 
 class Tag(models.Model):
@@ -100,11 +100,11 @@ class Estate(models.Model):
     latitude = models.FloatField(_('Координаты восточной широты'), null=True)
     longitude = models.FloatField(_('Координаты северной долготы'), null=True)
 
-    objects = EarthDistanceQuerySet.as_manager()
+
 
     class Meta:
-        verbose_name = 'Имущество'
-        verbose_name_plural = 'Имущества'
+        verbose_name = 'Недвижимость'
+        verbose_name_plural = 'Недвижимость'
         ordering = ['-id']
 
     def __str__(self):
@@ -168,4 +168,4 @@ class Feature(models.Model):
     
 class HouseImage(models.Model):
     file = models.ImageField(upload_to='houses')
-    house = models.ForeignKey(Estate, on_delete=models.CASCADE)
+    house = models.ForeignKey(Estate, on_delete=models.CASCADE, related_name='images')

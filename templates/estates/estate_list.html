@@ -69,8 +69,8 @@
 											<div class="listing">
 												<div class="listing-image-container">
     												
-        											{% if estate.houseimage_set.first %}
-													 <a href="{% url 'listing_detail' estate.id %}" ><img src="{{estate.houseimage_set.first.file.url}}"></a>
+        											{% if estate.images.first %}
+													 <a href="{% url 'listing_detail' estate.id %}" ><img src="{{estate.images.first.file.url}}"></a>
        												 
         												 {% else %}
 													 <a href="{% url 'listing_detail' estate.id %}" ><img src="{% static 'images/house-icon.svg' %}" alt=""></a>	 
@@ -82,7 +82,6 @@
         												<a href="#" class="tag-item" style="--clr: #55407d;">FOR SALE</a>
     												</div>
 												</div>
->
 												<div class="tag-price">$ {{estate.price}}</div>
 												<div class="prop-location">
 													<iframe src="{% static 'images/icons/geo.svg' %}" width="20px" height="20px"></iframe>

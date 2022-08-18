@@ -8,6 +8,8 @@ from .models import Estate, Details, Feature
 from .filters import EstateFilter
 from .decorators import check_author
 from django.contrib import messages
+from django.core.paginator import Paginator
+
 
 class HTTPResponseHXRedirect(HttpResponseRedirect):
 	def __init__(self, *args, **kwargs):
@@ -33,10 +35,10 @@ def about_us(request):
 def estate_list(request):
 	estates = Estate.objects.all()
 	f=EstateFilter(request.GET, queryset=Estate.objects.all())
-	print(f.form)
 	sort=request.GET.get('sort')
 	if sort:
 		f = EstateFilter(request.GET, queryset=Estate.objects.all().order_by(sort))
+	
 	context = {
 		'estates': estates,
 		'f': f,
@@ -104,8 +106,11 @@ def image_create(request, estate_id):
 
 def estate_detail(request, listing_id):
 	estate = Estate.objects.get(id=listing_id)
+	estate_images = estate.images.all()[1:]
+	print(estate_images)
 	context = {
-		'estate': estate
+		'estate': estate,
+		'estate_images': estate_images
 	}
 	return render(request, 'estates/estate_detail.html', context)
 
@@ -129,7 +134,7 @@ def estate_update(request, listing_id):
 	estate = get_object_or_404(Estate, id=listing_id)
 	form = EstateForm(request.POST or None, instance=estate)
 	if request.method == 'POST':
-		if form.is_valid:
+		if form.is_valid():
 			form.save()
 			return redirect('listing_list')
 	

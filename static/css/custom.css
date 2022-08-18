@@ -360,3 +360,9 @@ body {
 div.table-chars {
     width: 40em;
 }
+
+#detail_map, #createmap {
+	height: clamp(200px, 400px, 100vh);
+    width: clamp(200px, 400px, 100vw);
+}
+	
