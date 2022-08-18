@@ -4,13 +4,15 @@ from estates.models import Estate, Details, Feature, Tag, HouseImage
 
 
 class EstateForm(forms.ModelForm):
+    latitude = forms.CharField(widget=forms.HiddenInput())
+    longitude = forms.CharField(widget=forms.HiddenInput())
     class Meta:
         model = Estate
         fields = (
             'title', 'price', 'area',
             'estate_type', 'location',
             'video', 'description',
-            'tags'
+            'tags', 'latitude', 'longitude'
         )
 
 

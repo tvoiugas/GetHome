@@ -20,9 +20,9 @@
             <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{estate.houseimage_set.first.file.url}}" class="d-block w-100" alt="...">
+                        <img src="{{estate.images.first.file.url}}" class="d-block w-100" alt="...">
                     </div>
-                    {% for i in estate.houseimage_set.all %}
+                    {% for i in estate_images %}
                         <div class="carousel-item">
                             <img src="{{i.file.url}}" class="d-block w-100" alt="...">
                         </div>
@@ -113,6 +113,8 @@
 					</tr>
 				</tbody>
 			</table>
+			<div id="detail_map" class="mb-2 mt-2">
+			</div>
 				<a href="{% url 'listing_update' estate.id %}" class="btn btn-outline-success logout-btn"> UPDATE</a>
 				<a href="{% url 'listing_delete' estate.id %}" class="btn btn-outline-danger logout-btn"> DELETE</a>
 				
@@ -125,3 +127,15 @@
 	</div>
 </div>
 {% endblock content %}
+{% block javascript %}
+	<script>
+		let mapOptions={center:[{{estate.latitude|floatformat:"u"}}, {{estate.longitude|floatformat:"u"}}], zoom:12}
+        let detail_map = new L.map('detail_map', mapOptions)
+        let detail_layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        detail_map.addLayer(detail_layer);
+        L.marker([{{estate.latitude|floatformat:"u"}}, {{estate.longitude|floatformat:"u"}}]).addTo(detail_map);
+    </script>
+{% endblock javascript %}
+
+
+
