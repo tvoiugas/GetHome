@@ -1,9 +1,9 @@
 
 <div class="form-submit">
     <ul>
-        <h5>Upload images</h5>
-        <a href="{% url 'listings' %}">Завершить редактирование объявления</a>
-        <button id="submit-btn" class="submit-btn" hx-get="{% url 'image_create' estate_id=estate_id %}" hx-swap="afterend" hx-target="this">добавить фото</button>
+        <dev class="footer-text"><p><strong>"Upload photo" </strong></p></dev>
+        <a href="{% url 'listings' %}"><button class="mt-2 mb-2">Complete</button></a>
+        <button id="submit-btn" class="submit-btn mt-2 mb-2" hx-get="{% url 'image_create' estate_id=estate_id %}" hx-swap="afterend" hx-target="this">Add photo</button>
    
         {% include 'estates/image_form.html' %}
     </ul>
