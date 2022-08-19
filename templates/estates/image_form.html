@@ -2,8 +2,8 @@
 <form  hx-encoding='multipart/form-data' hx-post="{% url 'image_create' estate_id=estate_id %}" hx-target="this" hx-swap="outerHTML">
     {% csrf_token %}
     {{image_form.as_p}}
-    <button id="submit-btn" class="submit-btn" >Загрузить</button>
-    <button onclick="deletePrevForm(event)">Отмена</button>  
+    <button id="submit-btn" class="submit-btn mt-2 mb-2" >Download</button>
+    <button onclick="deletePrevForm(event)">Back</button>  
 </form>
 <script>
     deletePrevForm = (e) => {
